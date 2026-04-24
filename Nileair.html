@@ -1,0 +1,6541 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NileAir — Egypt's Prestige Airline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Cairo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/jpeg" href="plane.png" />
+
+    <style>
+      /* ═══════════════════════════════════════════════
+   THEME VARIABLES
+═══════════════════════════════════════════════ */
+      :root[data-theme="dark"] {
+        --bg-primary: #080c18;
+        --bg-secondary: #0f1526;
+        --bg-card: #131929;
+        --bg-elevated: #1a2238;
+        --bg-glass: rgba(15, 21, 38, 0.85);
+        --gold: #d4a843;
+        --gold-light: #f0c96e;
+        --gold-dark: #a07828;
+        --gold-glow: rgba(212, 168, 67, 0.15);
+        --accent: #e8c06a;
+        --text-primary: #f0e6d0;
+        --text-secondary: #a8946e;
+        --text-muted: #5a5040;
+        --text-on-gold: #0a0e1a;
+        --border: rgba(212, 168, 67, 0.2);
+        --border-bright: rgba(212, 168, 67, 0.5);
+        --shadow: rgba(0, 0, 0, 0.6);
+        --shadow-gold: rgba(212, 168, 67, 0.2);
+        --nav-bg: rgba(8, 12, 24, 0.95);
+        --input-bg: rgba(26, 34, 56, 0.8);
+        --success: #4caf84;
+        --danger: #e05252;
+        --pattern-opacity: 0.04;
+        --star-opacity: 1;
+      }
+
+      :root[data-theme="light"] {
+        --bg-primary: #faf6ee;
+        --bg-secondary: #f3ece0;
+        --bg-card: #ffffff;
+        --bg-elevated: #fff9f0;
+        --bg-glass: rgba(250, 246, 238, 0.9);
+        --gold: #b8860b;
+        --gold-light: #d4a843;
+        --gold-dark: #8b6408;
+        --gold-glow: rgba(184, 134, 11, 0.1);
+        --accent: #c9960c;
+        --text-primary: #1a1408;
+        --text-secondary: #5a4020;
+        --text-muted: #a08040;
+        --text-on-gold: #ffffff;
+        --border: rgba(184, 134, 11, 0.25);
+        --border-bright: rgba(184, 134, 11, 0.6);
+        --shadow: rgba(80, 60, 0, 0.15);
+        --shadow-gold: rgba(184, 134, 11, 0.15);
+        --nav-bg: rgba(250, 246, 238, 0.97);
+        --input-bg: rgba(255, 255, 255, 0.9);
+        --success: #2e7d52;
+        --danger: #c0392b;
+        --pattern-opacity: 0.06;
+        --star-opacity: 0;
+      }
+
+      /* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Lora", serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        overflow-x: hidden;
+        transition:
+          background 0.4s,
+          color 0.4s;
+      }
+
+      /* Starfield BG for dark theme */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          radial-gradient(
+            1px 1px at 20% 30%,
+            rgba(255, 255, 255, 0.6) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 80% 10%,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 60% 60%,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 40% 80%,
+            rgba(255, 255, 255, 0.5) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 90% 50%,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 10% 70%,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 70% 20%,
+            rgba(255, 255, 255, 0.6) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 50% 45%,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 30% 55%,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 85% 75%,
+            rgba(255, 255, 255, 0.5) 0%,
+            transparent 100%
+          );
+        opacity: var(--star-opacity);
+        pointer-events: none;
+        z-index: 0;
+        transition: opacity 0.4s;
+      }
+
+      /* Egyptian geometric pattern overlay */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a843' fill-opacity='1'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z M30 10 L50 30 L30 50 L10 30 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-size: 60px 60px;
+        opacity: var(--pattern-opacity);
+        pointer-events: none;
+        z-index: 0;
+        transition: opacity 0.4s;
+      }
+
+      /* ═══════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: var(--nav-bg);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 2rem;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.4s;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .nav-logo-icon {
+        width: 44px;
+        height: 44px;
+        position: relative;
+      }
+
+      .logo-text {
+        font-family: "Cinzel", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      .logo-sub {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.55rem;
+        color: var(--text-secondary);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        display: block;
+        margin-top: -4px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: color 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--gold);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .theme-toggle {
+        width: 52px;
+        height: 28px;
+        border-radius: 14px;
+        background: var(--border);
+        border: 1px solid var(--border-bright);
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+
+      .theme-toggle::after {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--gold);
+        top: 2px;
+        left: 2px;
+        transition: transform 0.3s;
+      }
+
+      [data-theme="light"] .theme-toggle::after {
+        transform: translateX(24px);
+      }
+
+      .btn {
+        font-family: "Cinzel", serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 10px 24px;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-gold {
+        background: linear-gradient(
+          135deg,
+          var(--gold-dark),
+          var(--gold),
+          var(--gold-light)
+        );
+        color: var(--text-on-gold);
+        box-shadow: 0 4px 20px var(--shadow-gold);
+      }
+
+      .btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px var(--shadow-gold);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--gold);
+        border: 1px solid var(--border-bright);
+      }
+
+      .btn-outline:hover {
+        background: var(--gold-glow);
+        border-color: var(--gold);
+      }
+
+      .btn-lg {
+        padding: 16px 40px;
+        font-size: 0.8rem;
+      }
+      .btn-sm {
+        padding: 8px 16px;
+        font-size: 0.65rem;
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE SYSTEM
+═══════════════════════════════════════════════ */
+      .page {
+        display: none;
+        min-height: 100vh;
+        padding-top: 72px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      /* Page transition */
+      @keyframes pageIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .page.active {
+        animation: pageIn 0.5s ease forwards;
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 1: HOME
+═══════════════════════════════════════════════ */
+      .hero {
+        min-height: calc(100vh - 72px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 2rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .hero-pyramid {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .hero-gradient {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 30%,
+          rgba(212, 168, 67, 0.08) 0%,
+          transparent 70%
+        );
+      }
+
+      .hero-glow {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 168, 67, 0.06) 0%,
+          transparent 70%
+        );
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+
+      .hero-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .hero-label::before,
+      .hero-label::after {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+        opacity: 0.5;
+      }
+
+      .hero-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        text-align: center;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--text-primary) 30%,
+          var(--gold) 60%,
+          var(--text-primary) 90%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 2px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        text-align: center;
+        max-width: 500px;
+        margin-bottom: 3rem;
+        font-style: italic;
+        line-height: 1.7;
+      }
+
+      /* Search Widget */
+      .search-widget {
+        background: var(--bg-glass);
+        backdrop-filter: blur(30px);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2rem;
+        width: 100%;
+        max-width: 900px;
+        box-shadow:
+          0 30px 80px var(--shadow),
+          0 0 0 1px var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .search-widget::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+
+      .search-tabs {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+      }
+
+      .search-tab {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding-bottom: 8px;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s;
+        background: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
+
+      .search-tab.active {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
+      }
+
+      .search-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr auto;
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .form-input,
+      .form-select {
+        background: var(--input-bg);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        padding: 12px 16px;
+        color: var(--text-primary);
+        font-family: "Lora", serif;
+        font-size: 0.9rem;
+        transition:
+          border-color 0.3s,
+          box-shadow 0.3s;
+        outline: none;
+        width: 100%;
+        appearance: none;
+      }
+
+      .form-input:focus,
+      .form-select:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px var(--gold-glow);
+      }
+
+      .form-input::placeholder {
+        color: var(--text-muted);
+      }
+
+      /* Destinations */
+      .section {
+        padding: 5rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+
+      .section-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 700;
+        color: var(--text-primary);
+        line-height: 1.2;
+      }
+
+      .section-title span {
+        color: var(--gold);
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 1rem auto 0;
+      }
+
+      .divider-line {
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold));
+      }
+
+      .divider-line:last-child {
+        background: linear-gradient(90deg, var(--gold), transparent);
+      }
+
+      .divider-diamond {
+        width: 8px;
+        height: 8px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
+
+      .destinations-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .dest-card {
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        aspect-ratio: 4/3;
+        border: 1px solid var(--border);
+        transition:
+          transform 0.4s,
+          box-shadow 0.4s;
+        background: var(--bg-card);
+      }
+
+      .dest-card:hover {
+        transform: translateY(-8px);
+        box-shadow:
+          0 20px 60px var(--shadow),
+          0 0 0 1px var(--border-bright);
+      }
+
+      .dest-card:first-child {
+        grid-column: span 2;
+        aspect-ratio: 16/9;
+      }
+
+      .dest-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s;
+      }
+
+      .dest-card:hover .dest-img {
+        transform: scale(1.05);
+      }
+
+      .dest-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.85) 0%,
+          rgba(0, 0, 0, 0.1) 60%,
+          transparent 100%
+        );
+      }
+
+      .dest-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+      }
+
+      .dest-city {
+        font-family: "Cinzel", serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+        display: block;
+      }
+
+      .dest-country {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      .dest-price {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--gold);
+        color: var(--text-on-gold);
+        font-family: "Cinzel", serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 6px 14px;
+        border-radius: 2px;
+        letter-spacing: 1px;
+      }
+
+      /* Stats */
+      .stats-section {
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 4rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stats-section::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 200px;
+        background: radial-gradient(
+          ellipse,
+          var(--gold-glow) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 2rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--bg-glass);
+        backdrop-filter: blur(10px);
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+
+      .stat-item:hover {
+        border-color: var(--gold);
+        transform: translateY(-4px);
+      }
+
+      .stat-number {
+        font-family: "Cinzel", serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--gold);
+        display: block;
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-top: 0.5rem;
+        display: block;
+      }
+
+      /* Features Section */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .feature-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .feature-card:hover {
+        border-color: var(--border-bright);
+        transform: translateY(-4px);
+      }
+      .feature-card:hover::before {
+        opacity: 1;
+      }
+
+      .feature-icon {
+        width: 56px;
+        height: 56px;
+        background: var(--gold-glow);
+        border: 1px solid var(--border-bright);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        transition: background 0.3s;
+      }
+
+      .feature-card:hover .feature-icon {
+        background: var(--gold);
+      }
+      .feature-card:hover .feature-icon svg {
+        color: var(--text-on-gold);
+      }
+
+      .feature-title {
+        font-family: "Cinzel", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+        letter-spacing: 1px;
+      }
+
+      .feature-desc {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+      }
+
+      /* Testimonials */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .testimonial-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2rem;
+        position: relative;
+      }
+
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-family: "Cinzel", serif;
+        font-size: 5rem;
+        color: var(--gold);
+        opacity: 0.15;
+        line-height: 1;
+      }
+
+      .stars {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 1rem;
+      }
+
+      .star {
+        color: var(--gold);
+        font-size: 0.9rem;
+      }
+
+      .testimonial-text {
+        font-size: 0.9rem;
+        line-height: 1.8;
+        color: var(--text-secondary);
+        font-style: italic;
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .author-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 2px solid var(--border-bright);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Cinzel", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--gold);
+        background: var(--gold-glow);
+        flex-shrink: 0;
+      }
+
+      .author-name {
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--text-primary);
+        display: block;
+      }
+
+      .author-origin {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-family: "Cairo", sans-serif;
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 2: SEARCH RESULTS
+═══════════════════════════════════════════════ */
+      .page-header {
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border);
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          var(--gold-glow) 0%,
+          transparent 60%
+        );
+      }
+
+      .page-header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .page-header h1 {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .page-breadcrumb {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+      }
+
+      .breadcrumb-sep {
+        margin: 0 8px;
+        color: var(--gold);
+      }
+
+      .results-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 2rem;
+      }
+
+      /* Filters */
+      .filters-panel {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.5rem;
+        height: fit-content;
+        position: sticky;
+        top: 90px;
+      }
+
+      .filter-title {
+        font-family: "Cinzel", serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .filter-group {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .filter-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .filter-group-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .filter-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0.75rem;
+        cursor: pointer;
+      }
+
+      .filter-checkbox {
+        width: 18px;
+        height: 18px;
+        border: 1px solid var(--border-bright);
+        border-radius: 2px;
+        background: var(--input-bg);
+        appearance: none;
+        cursor: pointer;
+        position: relative;
+        flex-shrink: 0;
+        transition: all 0.2s;
+      }
+
+      .filter-checkbox:checked {
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+
+      .filter-checkbox:checked::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--text-on-gold);
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .filter-option-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        flex: 1;
+      }
+
+      .filter-option-count {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+      }
+
+      .price-range {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .price-range input {
+        flex: 1;
+        background: var(--input-bg);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        padding: 8px 10px;
+        color: var(--text-primary);
+        font-size: 0.8rem;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      .price-range input:focus {
+        border-color: var(--gold);
+      }
+      .price-range-sep {
+        color: var(--text-muted);
+        font-size: 0.8rem;
+      }
+
+      /* Flight Cards */
+      .flights-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .sort-bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sort-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .sort-options {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .sort-btn {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+      }
+
+      .sort-btn.active,
+      .sort-btn:hover {
+        background: var(--gold-glow);
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      .results-count {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-left: auto;
+      }
+
+      .results-count span {
+        color: var(--gold);
+        font-weight: 700;
+      }
+
+      .flight-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5rem;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .flight-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--gold);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .flight-card:hover {
+        border-color: var(--border-bright);
+        box-shadow: 0 8px 40px var(--shadow);
+        transform: translateX(4px);
+      }
+
+      .flight-card:hover::before {
+        opacity: 1;
+      }
+
+      .flight-card.selected {
+        border-color: var(--gold);
+        background: var(--bg-elevated);
+        box-shadow:
+          0 0 0 1px var(--gold),
+          0 8px 30px var(--shadow-gold);
+      }
+
+      .flight-card.selected::before {
+        opacity: 1;
+      }
+
+      .flight-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .airline-badge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .airline-logo-sm {
+        width: 36px;
+        height: 36px;
+        border-radius: 4px;
+        background: var(--gold-glow);
+        border: 1px solid var(--border-bright);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+
+      .airline-name-sm {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        display: block;
+      }
+
+      .flight-number {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-family: "Cairo", sans-serif;
+      }
+
+      .flight-route {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .route-time {
+        font-family: "Cinzel", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .route-code {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        letter-spacing: 2px;
+        display: block;
+        text-align: center;
+      }
+
+      .route-line {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .route-duration {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--gold);
+        letter-spacing: 1px;
+      }
+
+      .route-bar {
+        width: 100%;
+        height: 1px;
+        background: var(--border-bright);
+        position: relative;
+      }
+
+      .route-bar::after {
+        content: "✈";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--gold);
+        font-size: 0.8rem;
+        background: var(--bg-card);
+        padding: 0 4px;
+      }
+
+      .flight-card.selected .route-bar {
+        background: var(--gold);
+      }
+
+      .route-stops {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        color: var(--text-muted);
+      }
+
+      .route-stops.nonstop {
+        color: var(--success);
+      }
+
+      .flight-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 2px;
+        background: var(--gold-glow);
+        color: var(--gold);
+        border: 1px solid var(--border);
+      }
+
+      .flight-price-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+        min-width: 160px;
+      }
+
+      .flight-class-tabs {
+        display: flex;
+        gap: 4px;
+      }
+
+      .class-tab {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 4px 8px;
+        border-radius: 2px;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text-muted);
+        transition: all 0.2s;
+      }
+
+      .class-tab.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--text-on-gold);
+      }
+
+      .flight-price {
+        text-align: right;
+      }
+
+      .price-from {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .price-amount {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--gold);
+        line-height: 1;
+      }
+
+      .price-amount span {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+
+      .price-per {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        color: var(--text-muted);
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 3: SEAT SELECTION
+═══════════════════════════════════════════════ */
+      .seat-page-layout {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 2rem;
+      }
+
+      .seat-map-container {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2rem;
+      }
+
+      .seat-map-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .seat-map-header h2 {
+        font-family: "Cinzel", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: 2px;
+      }
+
+      .seat-legend {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-secondary);
+      }
+
+      .legend-seat {
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        border: 1px solid transparent;
+      }
+
+      .legend-available {
+        background: var(--bg-elevated);
+        border-color: var(--border-bright);
+      }
+      .legend-selected {
+        background: var(--gold);
+        border-color: var(--gold-dark);
+      }
+      .legend-occupied {
+        background: var(--text-muted);
+        opacity: 0.4;
+      }
+      .legend-business {
+        background: rgba(212, 168, 67, 0.2);
+        border-color: var(--gold);
+      }
+      .legend-first {
+        background: rgba(212, 168, 67, 0.35);
+        border-color: var(--gold);
+      }
+
+      .plane-container {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .plane-nose {
+        width: 120px;
+        height: 60px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 60px 60px 0 0;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 10px;
+      }
+
+      .plane-body {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-top: none;
+        padding: 1rem;
+        position: relative;
+      }
+
+      .plane-section-label {
+        text-align: center;
+        font-family: "Cinzel", serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 6px;
+        margin: 0.5rem 0;
+        border-radius: 2px;
+      }
+
+      .section-first {
+        color: var(--gold);
+        background: rgba(212, 168, 67, 0.1);
+        border: 1px solid var(--gold);
+      }
+      .section-business {
+        color: var(--accent);
+        background: rgba(212, 168, 67, 0.05);
+        border: 1px solid var(--border-bright);
+      }
+      .section-economy {
+        color: var(--text-muted);
+        background: transparent;
+        border: 1px solid var(--border);
+      }
+
+      .seat-row {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 4px;
+        justify-content: center;
+      }
+
+      .row-num {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.6rem;
+        color: var(--text-muted);
+        width: 20px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .aisle {
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .seat {
+        width: 28px;
+        height: 28px;
+        border-radius: 4px 4px 6px 6px;
+        border: 1px solid var(--border);
+        background: var(--bg-card);
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        font-family: "Cairo", sans-serif;
+        font-size: 0.55rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: transparent;
+      }
+
+      .seat:hover:not(.occupied) {
+        background: var(--gold-glow);
+        border-color: var(--gold);
+        transform: scale(1.1);
+      }
+
+      .seat.selected {
+        background: var(--gold);
+        border-color: var(--gold-dark);
+        color: var(--text-on-gold);
+      }
+
+      .seat.occupied {
+        background: var(--bg-secondary);
+        border-color: var(--border);
+        cursor: not-allowed;
+        opacity: 0.4;
+      }
+
+      .seat.first-class {
+        background: rgba(212, 168, 67, 0.15);
+        border-color: var(--gold);
+        width: 34px;
+        height: 34px;
+      }
+
+      .seat.business {
+        background: rgba(212, 168, 67, 0.07);
+        border-color: var(--border-bright);
+        width: 30px;
+        height: 30px;
+      }
+
+      .plane-tail {
+        width: 80px;
+        height: 40px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-top: none;
+        border-radius: 0 0 40px 40px;
+        margin: 0 auto;
+      }
+
+      /* Seat Summary Panel */
+      .seat-summary {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.5rem;
+        height: fit-content;
+        position: sticky;
+        top: 90px;
+      }
+
+      .summary-title {
+        font-family: "Cinzel", serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .summary-flight-info {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .summary-route {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+
+      .summary-airport {
+        font-family: "Cinzel", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .summary-arrow {
+        color: var(--gold);
+        font-size: 0.8rem;
+      }
+
+      .summary-detail {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+      }
+
+      .selected-seats-list {
+        margin-bottom: 1.5rem;
+      }
+
+      .selected-seat-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .seat-id {
+        font-family: "Cinzel", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      .seat-class {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+      }
+
+      .seat-price {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .no-seats-msg {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-muted);
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+      }
+
+      .price-breakdown {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .price-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .price-row.total {
+        border-top: 1px solid var(--border);
+        padding-top: 0.5rem;
+        margin-top: 0.5rem;
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 4: PASSENGER DETAILS
+═══════════════════════════════════════════════ */
+      .booking-layout {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 2rem;
+      }
+
+      .form-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-card-title {
+        font-family: "Cinzel", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .form-card-title .step-badge {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--text-on-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .form-2col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-3col {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .extras-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .extra-card {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+      }
+
+      .extra-card:hover {
+        border-color: var(--border-bright);
+      }
+      .extra-card.selected {
+        border-color: var(--gold);
+        background: var(--gold-glow);
+      }
+
+      .extra-card input {
+        display: none;
+      }
+
+      .extra-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .extra-name {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+
+      .extra-desc {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .extra-price {
+        font-family: "Cinzel", serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      .extra-check {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        transition: all 0.2s;
+      }
+
+      .extra-card.selected .extra-check {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--text-on-gold);
+      }
+
+      /* Booking Sidebar */
+      .booking-sidebar {
+        position: sticky;
+        top: 90px;
+        height: fit-content;
+      }
+
+      .order-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .order-title {
+        font-family: "Cinzel", serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .order-item {
+        display: flex;
+        justify-content: space-between;
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.75rem;
+      }
+
+      .order-total {
+        display: flex;
+        justify-content: space-between;
+        font-family: "Cinzel", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        border-top: 1px solid var(--border);
+        padding-top: 0.75rem;
+        margin-top: 0.75rem;
+      }
+
+      .order-total span:last-child {
+        color: var(--gold);
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 5: PAYMENT
+═══════════════════════════════════════════════ */
+      .payment-layout {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 2rem;
+      }
+
+      /* Credit Card Visual */
+      .credit-card-visual {
+        perspective: 1000px;
+        margin-bottom: 2rem;
+        cursor: pointer;
+      }
+
+      .card-inner {
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        height: 220px;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+      }
+
+      .credit-card-visual.flipped .card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        backface-visibility: hidden;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          #1a2744 0%,
+          #0d1525 50%,
+          #2a1f00 100%
+        );
+        border: 1px solid var(--gold);
+        overflow: hidden;
+      }
+
+      .card-front::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(212, 168, 67, 0.08);
+      }
+
+      .card-back {
+        transform: rotateY(180deg);
+        background: linear-gradient(135deg, #0d1525 0%, #1a2744 100%);
+      }
+
+      .card-chip {
+        width: 44px;
+        height: 34px;
+        border-radius: 6px;
+        background: linear-gradient(
+          135deg,
+          var(--gold-light),
+          var(--gold-dark)
+        );
+        margin-bottom: 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-chip::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .card-number-display {
+        font-family: "Courier New", monospace;
+        font-size: 1.25rem;
+        color: #fff;
+        letter-spacing: 4px;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .card-holder-label {
+        font-size: 0.55rem;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .card-holder-name {
+        font-family: "Cinzel", serif;
+        color: #fff;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .card-expires-label {
+        font-size: 0.55rem;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 4px;
+        text-align: right;
+      }
+      .card-expires-date {
+        font-family: "Courier New", monospace;
+        color: #fff;
+        font-size: 0.9rem;
+        text-align: right;
+      }
+
+      .card-brand {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        display: flex;
+        gap: -6px;
+      }
+
+      .card-circle {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        opacity: 0.8;
+      }
+
+      .card-circle-1 {
+        background: #eb001b;
+        margin-right: -12px;
+      }
+      .card-circle-2 {
+        background: #f79e1b;
+      }
+
+      .card-stripe {
+        height: 48px;
+        background: rgba(0, 0, 0, 0.4);
+        margin: 1rem -1.5rem;
+      }
+
+      .card-cvv {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 4px;
+        padding: 8px 16px;
+        text-align: right;
+        font-family: "Courier New", monospace;
+        color: #333;
+        font-size: 0.9rem;
+        width: 80px;
+        margin-left: auto;
+      }
+
+      .payment-methods {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .pay-method {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-family: "Cairo", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        background: transparent;
+        transition: all 0.2s;
+      }
+
+      .pay-method.active {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: var(--gold-glow);
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 6: CONFIRMATION
+═══════════════════════════════════════════════ */
+      .confirmation-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+      }
+
+      .confirmation-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .success-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(76, 175, 132, 0.15);
+        border: 2px solid var(--success);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        animation: successPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes successPop {
+        from {
+          transform: scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .confirmation-header h1 {
+        font-family: "Cinzel", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .confirmation-header p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      /* Boarding Pass */
+      .boarding-pass {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        position: relative;
+        box-shadow: 0 20px 60px var(--shadow);
+      }
+
+      .boarding-pass::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--gold-dark),
+          var(--gold),
+          var(--gold-light),
+          var(--gold),
+          var(--gold-dark)
+        );
+      }
+
+      .bp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 2rem;
+        background: var(--bg-elevated);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .bp-airline {
+        font-family: "Cinzel", serif;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--gold);
+        letter-spacing: 3px;
+      }
+
+      .bp-class-badge {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border: 1px solid var(--gold);
+        border-radius: 2px;
+        color: var(--gold);
+      }
+
+      .bp-body {
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .bp-city {
+        font-family: "Cinzel", serif;
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        line-height: 1;
+      }
+
+      .bp-city-name {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 4px;
+      }
+
+      .bp-city-time {
+        font-family: "Cinzel", serif;
+        font-size: 1.2rem;
+        color: var(--gold);
+        font-weight: 600;
+        display: block;
+        margin-top: 8px;
+      }
+
+      .bp-middle {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .bp-plane-icon {
+        font-size: 2rem;
+        color: var(--gold);
+      }
+
+      .bp-duration {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .bp-arrow {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        margin: 4px 0;
+      }
+
+      .bp-right {
+        text-align: right;
+      }
+
+      .bp-divider {
+        border: none;
+        border-top: 1px dashed var(--border-bright);
+        margin: 0;
+        position: relative;
+      }
+
+      .bp-divider::before,
+      .bp-divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--bg-primary);
+        border: 1px solid var(--border);
+      }
+
+      .bp-divider::before {
+        left: -12px;
+      }
+      .bp-divider::after {
+        right: -12px;
+      }
+
+      .bp-footer {
+        padding: 1.5rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr) auto;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .bp-detail-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .bp-detail-value {
+        font-family: "Cinzel", serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .bp-barcode {
+        display: flex;
+        gap: 2px;
+        align-items: flex-end;
+        height: 50px;
+      }
+
+      .barcode-bar {
+        width: 3px;
+        background: var(--text-primary);
+        border-radius: 1px;
+      }
+
+      .booking-ref-card {
+        background: var(--bg-elevated);
+        border: 2px solid var(--gold);
+        border-radius: 4px;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .ref-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .ref-code {
+        font-family: "Cinzel", serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--gold);
+        letter-spacing: 8px;
+      }
+
+      .confirmation-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 7: MY BOOKINGS
+═══════════════════════════════════════════════ */
+      .bookings-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .bookings-filters {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .booking-filter-btn {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 8px 20px;
+        border-radius: 2px;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+      }
+
+      .booking-filter-btn.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--text-on-gold);
+      }
+
+      .booking-record {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        gap: 1.5rem;
+        align-items: center;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .booking-record:hover {
+        border-color: var(--border-bright);
+        box-shadow: 0 4px 20px var(--shadow);
+      }
+
+      .booking-status {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .status-confirmed {
+        background: var(--success);
+        box-shadow: 0 0 8px var(--success);
+      }
+      .status-upcoming {
+        background: var(--gold);
+        box-shadow: 0 0 8px var(--gold);
+      }
+      .status-completed {
+        background: var(--text-muted);
+      }
+      .status-cancelled {
+        background: var(--danger);
+      }
+
+      .booking-route-info {
+      }
+
+      .booking-route-label {
+        font-family: "Cinzel", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+
+      .booking-details {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+      }
+
+      .booking-date {
+        text-align: right;
+      }
+
+      .booking-date-main {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        display: block;
+      }
+
+      .booking-date-time {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+      }
+
+      .booking-price-col {
+        text-align: right;
+      }
+
+      .booking-price-amount {
+        font-family: "Cinzel", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--gold);
+        display: block;
+      }
+
+      .booking-status-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .label-confirmed {
+        color: var(--success);
+      }
+      .label-upcoming {
+        color: var(--gold);
+      }
+      .label-completed {
+        color: var(--text-muted);
+      }
+      .label-cancelled {
+        color: var(--danger);
+      }
+
+      /* ═══════════════════════════════════════════════
+   PAGE 8: ABOUT / CONTACT
+═══════════════════════════════════════════════ */
+      .about-hero {
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border);
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 100%,
+          rgba(212, 168, 67, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .about-hero h1 {
+        font-family: "Cinzel", serif;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-hero h1 span {
+        color: var(--gold);
+      }
+
+      .about-hero p {
+        max-width: 600px;
+        margin: 0 auto;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        margin-bottom: 4rem;
+      }
+
+      .about-text h2 {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .about-text h2 span {
+        color: var(--gold);
+      }
+
+      .about-text p {
+        color: var(--text-secondary);
+        line-height: 1.9;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .about-image-placeholder {
+        aspect-ratio: 4/3;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--bg-elevated);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .leadership-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
+
+      .leader-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s;
+      }
+
+      .leader-card:hover {
+        border-color: var(--border-bright);
+        transform: translateY(-4px);
+      }
+
+      .leader-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Cinzel", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--gold);
+        background: var(--gold-glow);
+        margin: 0 auto 1rem;
+      }
+
+      .leader-name {
+        font-family: "Cinzel", serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .leader-title {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--gold);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: block;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 4rem 2rem;
+      }
+
+      .contact-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+
+      .contact-info h3 {
+        font-family: "Cinzel", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 4px;
+        background: var(--gold-glow);
+        border: 1px solid var(--border-bright);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .contact-text-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .contact-text-value {
+        color: var(--text-primary);
+        font-size: 0.9rem;
+      }
+
+      .contact-form {
+      }
+
+      .contact-form h3 {
+        font-family: "Cinzel", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+      }
+
+      /* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+      footer {
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+        padding: 3rem 2rem 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-brand .logo-text {
+        font-size: 1.2rem;
+      }
+
+      .footer-tagline {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-top: 0.75rem;
+        font-style: italic;
+      }
+
+      .footer-col-title {
+        font-family: "Cinzel", serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.25rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .footer-links a {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.2s;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+      }
+
+      .footer-links a:hover {
+        color: var(--gold);
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-copy {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+      }
+
+      .footer-legal {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-legal a {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s;
+        letter-spacing: 1px;
+      }
+
+      .footer-legal a:hover {
+        color: var(--gold);
+      }
+
+      /* Progress Steps */
+      .progress-steps {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin: 1.5rem 0;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .step-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        flex: 1;
+      }
+
+      .step-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        width: 100%;
+        height: 1px;
+        background: var(--border);
+        z-index: 0;
+      }
+
+      .step-item.completed:not(:last-child)::after {
+        background: var(--gold);
+      }
+
+      .step-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid var(--border);
+        background: var(--bg-card);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Cinzel", serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        z-index: 1;
+        position: relative;
+        transition: all 0.3s;
+      }
+
+      .step-item.active .step-circle {
+        border-color: var(--gold);
+        background: var(--gold);
+        color: var(--text-on-gold);
+        box-shadow: 0 0 20px var(--shadow-gold);
+      }
+
+      .step-item.completed .step-circle {
+        border-color: var(--gold);
+        background: var(--gold-glow);
+        color: var(--gold);
+      }
+
+      .step-label {
+        font-family: "Cairo", sans-serif;
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-top: 6px;
+        text-align: center;
+      }
+
+      .step-item.active .step-label {
+        color: var(--gold);
+      }
+      .step-item.completed .step-label {
+        color: var(--text-secondary);
+      }
+
+      /* Utilities */
+      .text-gold {
+        color: var(--gold);
+      }
+      .text-center {
+        text-align: center;
+      }
+      .mt-1 {
+        margin-top: 0.5rem;
+      }
+      .mt-2 {
+        margin-top: 1rem;
+      }
+      .mt-3 {
+        margin-top: 1.5rem;
+      }
+      .mb-1 {
+        margin-bottom: 0.5rem;
+      }
+      .mb-2 {
+        margin-bottom: 1rem;
+      }
+      .mb-3 {
+        margin-bottom: 1.5rem;
+      }
+      .w-full {
+        width: 100%;
+      }
+
+      .notification {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--bg-elevated);
+        border: 1px solid var(--gold);
+        border-radius: 4px;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Cairo", sans-serif;
+        font-size: 0.85rem;
+        color: var(--text-primary);
+        z-index: 9999;
+        box-shadow: 0 10px 40px var(--shadow);
+        transform: translateX(200%);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .notification.show {
+        transform: translateX(0);
+      }
+      .notification-icon {
+        font-size: 1.2rem;
+      }
+
+      /* Mobile menu */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+      }
+
+      .hamburger span {
+        width: 24px;
+        height: 2px;
+        background: var(--gold);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      /* Skeleton loading */
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          var(--bg-elevated) 25%,
+          var(--bg-card) 50%,
+          var(--bg-elevated) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 4px;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      /* Egyptian decorative elements */
+      .ankh-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .ankh-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border));
+      }
+
+      .ankh-line:last-child {
+        background: linear-gradient(90deg, var(--border), transparent);
+      }
+
+      .ankh-symbol {
+        color: var(--gold);
+        font-size: 1rem;
+        opacity: 0.6;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .search-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .destinations-grid {
+          grid-template-columns: 1fr;
+        }
+        .dest-card:first-child {
+          grid-column: 1;
+          aspect-ratio: 4/3;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+        .results-container {
+          grid-template-columns: 1fr;
+        }
+        .filters-panel {
+          display: none;
+        }
+        .seat-page-layout {
+          grid-template-columns: 1fr;
+        }
+        .booking-layout {
+          grid-template-columns: 1fr;
+        }
+        .payment-layout {
+          grid-template-columns: 1fr;
+        }
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .leadership-grid {
+          grid-template-columns: 1fr;
+        }
+        .booking-record {
+          grid-template-columns: auto 1fr;
+        }
+        .bp-body {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .bp-footer {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .form-2col {
+          grid-template-columns: 1fr;
+        }
+        .form-3col {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav">
+      <div class="nav-logo" onclick="navigate('home')">
+        <div class="nav-logo-icon">
+          <svg
+            viewBox="0 0 44 44"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            width="44"
+            height="44"
+          >
+            <polygon
+              points="22,4 40,36 4,36"
+              fill="none"
+              stroke="#d4a843"
+              stroke-width="1.5"
+            />
+            <polygon
+              points="22,12 34,34 10,34"
+              fill="rgba(212,168,67,0.15)"
+              stroke="#d4a843"
+              stroke-width="0.5"
+            />
+            <line
+              x1="22"
+              y1="4"
+              x2="22"
+              y2="36"
+              stroke="#d4a843"
+              stroke-width="0.5"
+              stroke-dasharray="2,2"
+            />
+            <circle cx="22" cy="4" r="2" fill="#d4a843" />
+          </svg>
+        </div>
+        <div>
+          <span class="logo-text">NileAir</span>
+          <span class="logo-sub">Egypt's Prestige Airline</span>
+        </div>
+      </div>
+
+      <ul class="nav-links">
+        <li>
+          <a onclick="navigate('home')" class="active" data-page="home">Home</a>
+        </li>
+        <li>
+          <a onclick="navigate('results')" data-page="results">Flights</a>
+        </li>
+        <li>
+          <a onclick="navigate('bookings')" data-page="bookings">My Bookings</a>
+        </li>
+        <li><a onclick="navigate('about')" data-page="about">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button
+          class="theme-toggle"
+          onclick="toggleTheme()"
+          title="Toggle theme"
+          aria-label="Toggle theme"
+        ></button>
+        <button class="btn btn-outline btn-sm" onclick="navigate('bookings')">
+          My Trips
+        </button>
+        <button class="btn btn-gold btn-sm" onclick="navigate('home')">
+          Book Now
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══ PAGE 1: HOME ═══ -->
+    <div class="page active" id="page-home">
+      <div class="hero">
+        <div class="hero-bg">
+          <div class="hero-gradient"></div>
+          <div class="hero-glow"></div>
+          <svg
+            class="hero-pyramid"
+            viewBox="0 0 1200 300"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMax meet"
+          >
+            <defs>
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="0%"
+                  stop-color="var(--bg-primary)"
+                  stop-opacity="0"
+                />
+                <stop offset="100%" stop-color="var(--bg-primary)" />
+              </linearGradient>
+              <linearGradient id="pyGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="var(--bg-secondary)" />
+                <stop offset="50%" stop-color="var(--bg-elevated)" />
+                <stop offset="100%" stop-color="var(--bg-secondary)" />
+              </linearGradient>
+            </defs>
+            <!-- Stars -->
+            <circle cx="100" cy="50" r="1" fill="var(--gold)" opacity="0.4" />
+            <circle cx="350" cy="30" r="0.8" fill="var(--gold)" opacity="0.3" />
+            <circle cx="800" cy="20" r="1.2" fill="var(--gold)" opacity="0.5" />
+            <circle
+              cx="1050"
+              cy="60"
+              r="0.9"
+              fill="var(--gold)"
+              opacity="0.35"
+            />
+            <circle cx="600" cy="15" r="0.7" fill="var(--gold)" opacity="0.4" />
+            <!-- Main pyramid -->
+            <polygon
+              points="600,40 820,280 380,280"
+              fill="url(#pyGrad)"
+              stroke="var(--gold)"
+              stroke-width="0.5"
+              opacity="0.7"
+            />
+            <!-- Pyramid lines -->
+            <line
+              x1="600"
+              y1="40"
+              x2="600"
+              y2="280"
+              stroke="var(--gold)"
+              stroke-width="0.3"
+              opacity="0.3"
+            />
+            <line
+              x1="600"
+              y1="120"
+              x2="440"
+              y2="280"
+              stroke="var(--gold)"
+              stroke-width="0.3"
+              opacity="0.2"
+            />
+            <line
+              x1="600"
+              y1="120"
+              x2="760"
+              y2="280"
+              stroke="var(--gold)"
+              stroke-width="0.3"
+              opacity="0.2"
+            />
+            <!-- Small pyramids -->
+            <polygon
+              points="200,180 290,280 110,280"
+              fill="url(#pyGrad)"
+              stroke="var(--gold)"
+              stroke-width="0.4"
+              opacity="0.5"
+            />
+            <polygon
+              points="1000,200 1080,280 920,280"
+              fill="url(#pyGrad)"
+              stroke="var(--gold)"
+              stroke-width="0.4"
+              opacity="0.5"
+            />
+            <!-- Ground -->
+            <rect
+              x="0"
+              y="278"
+              width="1200"
+              height="22"
+              fill="var(--bg-secondary)"
+              opacity="0.8"
+            />
+            <!-- Sky gradient overlay -->
+            <rect x="0" y="0" width="1200" height="300" fill="url(#skyGrad)" />
+            <!-- Golden sun rays at apex -->
+            <g opacity="0.15" transform="translate(600,40)">
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="-30"
+                stroke="var(--gold)"
+                stroke-width="1"
+              />
+              <line
+                x1="0"
+                y1="0"
+                x2="21"
+                y2="-21"
+                stroke="var(--gold)"
+                stroke-width="1"
+              />
+              <line
+                x1="0"
+                y1="0"
+                x2="30"
+                y2="0"
+                stroke="var(--gold)"
+                stroke-width="1"
+              />
+              <line
+                x1="0"
+                y1="0"
+                x2="-21"
+                y2="-21"
+                stroke="var(--gold)"
+                stroke-width="1"
+              />
+              <line
+                x1="0"
+                y1="0"
+                x2="-30"
+                y2="0"
+                stroke="var(--gold)"
+                stroke-width="1"
+              />
+            </g>
+          </svg>
+        </div>
+
+        <div class="hero-label">✦ Since 1971 ✦</div>
+        <h1 class="hero-title">Journey Through<br />The Land of Pharaohs</h1>
+        <p class="hero-subtitle">
+          Experience the majesty of Egypt from above. Premium flights connecting
+          Cairo to the world's most magnificent destinations.
+        </p>
+
+        <!-- Search Widget -->
+        <div class="search-widget">
+          <div class="search-tabs">
+            <button
+              class="search-tab active"
+              onclick="switchTab(this, 'round')"
+            >
+              Round Trip
+            </button>
+            <button class="search-tab" onclick="switchTab(this, 'oneway')">
+              One Way
+            </button>
+            <button class="search-tab" onclick="switchTab(this, 'multi')">
+              Multi-City
+            </button>
+          </div>
+          <div class="search-grid">
+            <div class="form-group">
+              <label class="form-label">✈ From</label>
+              <select class="form-select" id="fromCity">
+                <option value="CAI">Cairo (CAI)</option>
+                <option value="HRG">Hurghada (HRG)</option>
+                <option value="SSH">Sharm El-Sheikh (SSH)</option>
+                <option value="LXR">Luxor (LXR)</option>
+                <option value="ASW">Aswan (ASW)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">✈ To</label>
+              <select class="form-select" id="toCity">
+                <option value="DXB">Dubai (DXB)</option>
+                <option value="LHR">London (LHR)</option>
+                <option value="CDG">Paris (CDG)</option>
+                <option value="JFK">New York (JFK)</option>
+                <option value="IST">Istanbul (IST)</option>
+                <option value="FCO">Rome (FCO)</option>
+                <option value="FRA">Frankfurt (FRA)</option>
+                <option value="BKK">Bangkok (BKK)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">📅 Depart</label>
+              <input type="date" class="form-input" id="departDate" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">👥 Passengers</label>
+              <select class="form-select" id="passengers">
+                <option>1 Adult</option>
+                <option>2 Adults</option>
+                <option>3 Adults</option>
+                <option>2 Adults + 1 Child</option>
+                <option>2 Adults + 2 Children</option>
+              </select>
+            </div>
+            <button
+              class="btn btn-gold btn-lg"
+              onclick="searchFlights()"
+              style="white-space: nowrap"
+            >
+              Search Flights
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destinations -->
+      <div
+        style="
+          background: var(--bg-secondary);
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+          padding: 0.5rem 0;
+        "
+      >
+        <div
+          style="
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.75rem;
+              color: var(--text-secondary);
+            "
+          >
+            <span style="color: var(--gold)">✦</span> 85+ Destinations
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.75rem;
+              color: var(--text-secondary);
+            "
+          >
+            <span style="color: var(--gold)">✦</span> Free Cancellation
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.75rem;
+              color: var(--text-secondary);
+            "
+          >
+            <span style="color: var(--gold)">✦</span> Best Price Guarantee
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.75rem;
+              color: var(--text-secondary);
+            "
+          >
+            <span style="color: var(--gold)">✦</span> 24/7 Cairo Support
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <span class="section-label">Popular Routes</span>
+          <h2 class="section-title">Discover the <span>World</span></h2>
+          <div class="divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line"></div>
+          </div>
+        </div>
+        <div class="destinations-grid">
+          <div
+            class="dest-card"
+            onclick="navigate('results')"
+            style="background: linear-gradient(135deg, #1a2040, #0d1020)"
+          >
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                overflow: hidden;
+              "
+            >
+              <svg
+                viewBox="0 0 800 350"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 100%; opacity: 0.5"
+              >
+                <rect width="800" height="350" fill="url(#dubaiSky)" />
+                <defs>
+                  <linearGradient id="dubaiSky" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0a1428" />
+                    <stop offset="100%" stop-color="#1a3060" />
+                  </linearGradient>
+                </defs>
+                <!-- Burj Khalifa silhouette simplified -->
+                <rect x="370" y="50" width="12" height="280" fill="#1a2744" />
+                <rect x="360" y="120" width="32" height="30" fill="#1a2744" />
+                <rect x="350" y="180" width="52" height="40" fill="#1a2744" />
+                <rect x="330" y="250" width="92" height="80" fill="#1a2744" />
+                <!-- Buildings -->
+                <rect x="450" y="170" width="60" height="160" fill="#162035" />
+                <rect x="270" y="200" width="50" height="130" fill="#162035" />
+                <rect x="520" y="210" width="40" height="120" fill="#162035" />
+                <rect x="200" y="230" width="55" height="100" fill="#162035" />
+                <!-- Stars -->
+                <circle cx="100" cy="50" r="1.5" fill="#d4a843" opacity="0.8" />
+                <circle cx="650" cy="30" r="1.2" fill="#d4a843" opacity="0.6" />
+                <circle cx="720" cy="80" r="1" fill="#d4a843" opacity="0.7" />
+              </svg>
+            </div>
+            <div class="dest-overlay"></div>
+            <div class="dest-info">
+              <span class="dest-city">Dubai</span>
+              <span class="dest-country">United Arab Emirates</span>
+            </div>
+            <div class="dest-price">From EGP 4,200</div>
+          </div>
+
+          <div
+            class="dest-card"
+            onclick="navigate('results')"
+            style="background: linear-gradient(135deg, #1a1030, #0d0818)"
+          >
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                overflow: hidden;
+              "
+            >
+              <svg
+                viewBox="0 0 400 350"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 100%; opacity: 0.45"
+              >
+                <rect width="400" height="350" fill="#0d0818" />
+                <!-- Eiffel Tower simplified -->
+                <polygon points="200,40 220,300 180,300" fill="#2a1a40" />
+                <polygon points="200,80 230,250 170,250" fill="#1a1030" />
+                <rect x="165" y="250" width="70" height="50" fill="#2a1a40" />
+                <rect x="155" y="280" width="90" height="20" fill="#1a1030" />
+                <!-- Light from top -->
+                <line
+                  x1="200"
+                  y1="40"
+                  x2="120"
+                  y2="120"
+                  stroke="#d4a843"
+                  stroke-width="1"
+                  opacity="0.3"
+                />
+                <line
+                  x1="200"
+                  y1="40"
+                  x2="280"
+                  y2="120"
+                  stroke="#d4a843"
+                  stroke-width="1"
+                  opacity="0.3"
+                />
+              </svg>
+            </div>
+            <div class="dest-overlay"></div>
+            <div class="dest-info">
+              <span class="dest-city">Paris</span>
+              <span class="dest-country">France</span>
+            </div>
+            <div class="dest-price">From EGP 9,800</div>
+          </div>
+
+          <div
+            class="dest-card"
+            onclick="navigate('results')"
+            style="background: linear-gradient(135deg, #0d1c28, #08121a)"
+          >
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+              "
+            >
+              <svg
+                viewBox="0 0 400 350"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 100%; opacity: 0.4"
+              >
+                <rect width="400" height="350" fill="#08121a" />
+                <!-- London Bridge + Big Ben simplified -->
+                <rect x="150" y="100" width="16" height="220" fill="#1a2a3a" />
+                <rect x="140" y="90" width="36" height="30" fill="#1a2a3a" />
+                <rect x="145" y="70" width="26" height="24" fill="#1a2a3a" />
+                <!-- Bridge -->
+                <rect x="0" y="270" width="400" height="20" fill="#1a2a3a" />
+                <line
+                  x1="0"
+                  y1="260"
+                  x2="180"
+                  y2="240"
+                  stroke="#1a2a3a"
+                  stroke-width="8"
+                />
+                <line
+                  x1="400"
+                  y1="260"
+                  x2="220"
+                  y2="240"
+                  stroke="#1a2a3a"
+                  stroke-width="8"
+                />
+              </svg>
+            </div>
+            <div class="dest-overlay"></div>
+            <div class="dest-info">
+              <span class="dest-city">London</span>
+              <span class="dest-country">United Kingdom</span>
+            </div>
+            <div class="dest-price">From EGP 11,500</div>
+          </div>
+
+          <div
+            class="dest-card"
+            onclick="navigate('results')"
+            style="background: linear-gradient(135deg, #1a1810, #0f0e08)"
+          >
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <svg
+                viewBox="0 0 400 350"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 100%; opacity: 0.35"
+              >
+                <rect width="400" height="350" fill="#0f0e08" />
+                <!-- Colosseum simplified -->
+                <ellipse
+                  cx="200"
+                  cy="220"
+                  rx="160"
+                  ry="100"
+                  fill="none"
+                  stroke="#2a2010"
+                  stroke-width="20"
+                />
+                <ellipse
+                  cx="200"
+                  cy="220"
+                  rx="120"
+                  ry="70"
+                  fill="none"
+                  stroke="#2a2010"
+                  stroke-width="12"
+                />
+                <ellipse
+                  cx="200"
+                  cy="220"
+                  rx="80"
+                  ry="45"
+                  fill="none"
+                  stroke="#1a1808"
+                  stroke-width="8"
+                />
+                <rect
+                  x="40"
+                  y="175"
+                  width="320"
+                  height="90"
+                  fill="#1a1808"
+                  opacity="0.5"
+                />
+              </svg>
+            </div>
+            <div class="dest-overlay"></div>
+            <div class="dest-info">
+              <span class="dest-city">Rome</span>
+              <span class="dest-country">Italy</span>
+            </div>
+            <div class="dest-price">From EGP 8,900</div>
+          </div>
+
+          <div
+            class="dest-card"
+            onclick="navigate('results')"
+            style="background: linear-gradient(135deg, #1a0808, #0f0404)"
+          >
+            <div style="position: absolute; inset: 0; overflow: hidden">
+              <svg
+                viewBox="0 0 400 350"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 100%; opacity: 0.3; position: absolute; inset: 0"
+              >
+                <rect width="400" height="350" fill="#0f0404" />
+                <!-- Manhattan silhouette simplified -->
+                <rect x="20" y="150" width="30" height="200" fill="#1a0808" />
+                <rect x="60" y="100" width="25" height="250" fill="#200808" />
+                <rect x="95" y="130" width="35" height="220" fill="#1a0808" />
+                <rect x="140" y="80" width="20" height="270" fill="#220a0a" />
+                <rect x="170" y="60" width="16" height="290" fill="#1a0808" />
+                <rect x="200" y="110" width="28" height="240" fill="#200808" />
+                <rect x="240" y="140" width="32" height="210" fill="#1a0808" />
+                <rect x="285" y="120" width="22" height="230" fill="#200808" />
+                <rect x="320" y="170" width="60" height="180" fill="#1a0808" />
+              </svg>
+            </div>
+            <div class="dest-overlay"></div>
+            <div class="dest-info">
+              <span class="dest-city">New York</span>
+              <span class="dest-country">United States</span>
+            </div>
+            <div class="dest-price">From EGP 18,200</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-target="85">0</span>
+            <span class="stat-label">Destinations</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="52">0</span>
+            <span class="stat-label">Years of Excellence</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="4200000">0</span>
+            <span class="stat-label">Happy Passengers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="98">0</span>
+            <span class="stat-label">% On-Time Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-label">Why Choose NileAir</span>
+          <h2 class="section-title">Travel in <span>Royal</span> Comfort</h2>
+          <div class="divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line"></div>
+          </div>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                color="var(--gold)"
+              >
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">Pharaoh's First Class</div>
+            <div class="feature-desc">
+              Experience unparalleled luxury in our redesigned First Class
+              cabins featuring lie-flat beds, curated Egyptian cuisine, and
+              personal concierge service inspired by ancient royalty.
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                color="var(--gold)"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div class="feature-title">Always On Time</div>
+            <div class="feature-desc">
+              With a 98% on-time departure rate, NileAir stands among the
+              world's most punctual airlines. Your time is as precious as the
+              Nile itself.
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                color="var(--gold)"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div class="feature-title">Guaranteed Safety</div>
+            <div class="feature-desc">
+              Our fleet maintains the highest international safety
+              certifications. Every NileAir flight carries the weight of our
+              52-year legacy of excellence.
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                color="var(--gold)"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">NileAir Miles</div>
+            <div class="feature-desc">
+              Earn golden miles on every journey. Redeem for free flights, hotel
+              stays, and exclusive experiences. Loyalty has never been so richly
+              rewarded.
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                color="var(--gold)"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div class="feature-title">85+ Destinations</div>
+            <div class="feature-desc">
+              From Cairo to every corner of the globe. Whether the hidden
+              valleys of South America or the ancient temples of Asia, NileAir
+              takes you there.
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                color="var(--gold)"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">24/7 Support</div>
+            <div class="feature-desc">
+              Our dedicated team in Cairo is always available. Speak with a real
+              human who understands your journey and speaks your language.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div
+        style="
+          background: var(--bg-secondary);
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+        "
+      >
+        <div class="section">
+          <div class="section-header">
+            <span class="section-label">Traveller Stories</span>
+            <h2 class="section-title">What Our <span>Guests</span> Say</h2>
+            <div class="divider">
+              <div class="divider-line"></div>
+              <div class="divider-diamond"></div>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                The First Class experience was beyond words. The Egyptian
+                hospitality aboard NileAir made me feel like true royalty. The
+                food, the service, the attention to detail — simply
+                unforgettable.
+              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">A</div>
+                <div>
+                  <span class="author-name">Ahmed Al-Rashid</span>
+                  <span class="author-origin">Dubai → Cairo</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                Booked a last-minute flight to London and the process was
+                seamless. The NileAir app is exceptional and the on-board Wi-Fi
+                meant I arrived fully prepared for my meetings.
+              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">S</div>
+                <div>
+                  <span class="author-name">Sarah Mitchell</span>
+                  <span class="author-origin">Cairo → London</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                As a frequent traveller between Cairo and Frankfurt, NileAir has
+                never let me down. Their punctuality is remarkable and the
+                Pharaoh Lounge at Cairo International is world-class.
+              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">M</div>
+                <div>
+                  <span class="author-name">Mohamed Hassan</span>
+                  <span class="author-origin">Cairo → Frankfurt</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div
+              class="logo-text"
+              style="
+                font-family: &quot;Cinzel&quot;, serif;
+                color: var(--gold);
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+              "
+            >
+              NileAir
+            </div>
+            <p class="footer-tagline">
+              Egypt's prestige airline, carrying the spirit of ancient
+              civilization to every corner of the world. Since 1971.
+            </p>
+          </div>
+          <div>
+            <div class="footer-col-title">Destinations</div>
+            <ul class="footer-links">
+              <li><a onclick="navigate('results')">Cairo → Dubai</a></li>
+              <li><a onclick="navigate('results')">Cairo → London</a></li>
+              <li><a onclick="navigate('results')">Cairo → Paris</a></li>
+              <li><a onclick="navigate('results')">Cairo → New York</a></li>
+              <li><a onclick="navigate('results')">All Routes</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Services</div>
+            <ul class="footer-links">
+              <li><a>First Class</a></li>
+              <li><a>Business Class</a></li>
+              <li><a>NileAir Miles</a></li>
+              <li><a>Pharaoh Lounge</a></li>
+              <li><a>Cargo</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Company</div>
+            <ul class="footer-links">
+              <li><a onclick="navigate('about')">About NileAir</a></li>
+              <li><a onclick="navigate('about')">Leadership</a></li>
+              <li><a onclick="navigate('about')">Contact Us</a></li>
+              <li><a>Careers</a></li>
+              <li><a>Press</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            © 2024 NileAir Egyptian Airlines. All rights reserved.
+          </div>
+          <div class="footer-legal">
+            <a>Privacy Policy</a>
+            <a>Terms of Service</a>
+            <a>Cookie Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ═══ PAGE 2: SEARCH RESULTS ═══ -->
+    <div class="page" id="page-results">
+      <div class="page-header">
+        <div class="page-header-content">
+          <div class="page-breadcrumb">
+            <span
+              onclick="navigate('home')"
+              style="cursor: pointer; color: var(--gold)"
+              >Home</span
+            >
+            <span class="breadcrumb-sep">›</span>
+            <span>Flight Results</span>
+          </div>
+          <h1 id="resultsTitle">Cairo → Dubai</h1>
+          <div
+            style="
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.8rem;
+              color: var(--text-secondary);
+              margin-top: 0.5rem;
+            "
+          >
+            <span id="resultsDate">Sat, 15 March 2025</span> ·
+            <span id="resultsPax">1 Passenger</span> · Round Trip
+          </div>
+          <!-- Progress Steps -->
+          <div class="progress-steps" style="margin-top: 1.5rem">
+            <div class="step-item active">
+              <div class="step-circle">1</div>
+              <div class="step-label">Select</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">2</div>
+              <div class="step-label">Seats</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">3</div>
+              <div class="step-label">Details</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">4</div>
+              <div class="step-label">Payment</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">5</div>
+              <div class="step-label">Confirm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-container">
+        <!-- Filters -->
+        <div class="filters-panel">
+          <div class="filter-title">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+            </svg>
+            Filters
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Stops</span>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">Non-stop</span>
+              <span class="filter-option-count">4</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">1 Stop</span>
+              <span class="filter-option-count">6</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" />
+              <span class="filter-option-label">2+ Stops</span>
+              <span class="filter-option-count">2</span>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Price Range (EGP)</span>
+            <div class="price-range">
+              <input type="number" placeholder="Min" value="3000" />
+              <span class="price-range-sep">—</span>
+              <input type="number" placeholder="Max" value="25000" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Airlines</span>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">NileAir</span>
+              <span class="filter-option-count">5</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">Emirates</span>
+              <span class="filter-option-count">3</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" />
+              <span class="filter-option-label">Turkish Airlines</span>
+              <span class="filter-option-count">2</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" />
+              <span class="filter-option-label">Lufthansa</span>
+              <span class="filter-option-count">2</span>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Departure Time</span>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">Morning (6am–12pm)</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">Afternoon (12pm–6pm)</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" />
+              <span class="filter-option-label">Evening (6pm–12am)</span>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Class</span>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">Economy</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" checked />
+              <span class="filter-option-label">Business</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" class="filter-checkbox" />
+              <span class="filter-option-label">First Class</span>
+            </label>
+          </div>
+
+          <button class="btn btn-outline w-full mt-2">Apply Filters</button>
+          <button
+            class="btn w-full mt-1"
+            onclick=""
+            style="
+              background: transparent;
+              color: var(--text-muted);
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.7rem;
+              cursor: pointer;
+              border: none;
+              letter-spacing: 1px;
+              text-decoration: underline;
+            "
+          >
+            Reset All
+          </button>
+        </div>
+
+        <!-- Results -->
+        <div class="flights-main">
+          <div class="sort-bar">
+            <span class="sort-label">Sort by:</span>
+            <div class="sort-options">
+              <button class="sort-btn active">Price</button>
+              <button class="sort-btn" onclick="activateSortBtn(this)">
+                Duration
+              </button>
+              <button class="sort-btn" onclick="activateSortBtn(this)">
+                Departure
+              </button>
+              <button class="sort-btn" onclick="activateSortBtn(this)">
+                Best Match
+              </button>
+            </div>
+            <span class="results-count"><span>8</span> flights found</span>
+          </div>
+
+          <div class="flights-list" id="flightsList">
+            <!-- Flight cards injected by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 3: SEAT SELECTION ═══ -->
+    <div class="page" id="page-seats">
+      <div class="page-header">
+        <div class="page-header-content">
+          <div class="page-breadcrumb">
+            <span
+              onclick="navigate('home')"
+              style="cursor: pointer; color: var(--gold)"
+              >Home</span
+            >
+            <span class="breadcrumb-sep">›</span>
+            <span
+              onclick="navigate('results')"
+              style="cursor: pointer; color: var(--gold)"
+              >Flights</span
+            >
+            <span class="breadcrumb-sep">›</span>
+            <span>Seat Selection</span>
+          </div>
+          <h1>Choose Your Seat</h1>
+          <div class="progress-steps" style="margin-top: 1.5rem">
+            <div class="step-item completed">
+              <div class="step-circle">✓</div>
+              <div class="step-label">Select</div>
+            </div>
+            <div class="step-item active">
+              <div class="step-circle">2</div>
+              <div class="step-label">Seats</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">3</div>
+              <div class="step-label">Details</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">4</div>
+              <div class="step-label">Payment</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">5</div>
+              <div class="step-label">Confirm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="seat-page-layout">
+        <div class="seat-map-container">
+          <div class="seat-map-header">
+            <h2>NileAir A330 — CAI → DXB</h2>
+            <div class="seat-legend">
+              <div class="legend-item">
+                <div class="legend-seat legend-first"></div>
+                First Class
+              </div>
+              <div class="legend-item">
+                <div class="legend-seat legend-business"></div>
+                Business
+              </div>
+              <div class="legend-item">
+                <div class="legend-seat legend-available"></div>
+                Available
+              </div>
+              <div class="legend-item">
+                <div class="legend-seat legend-selected"></div>
+                Selected
+              </div>
+              <div class="legend-item">
+                <div class="legend-seat legend-occupied"></div>
+                Occupied
+              </div>
+            </div>
+          </div>
+          <div class="plane-container" id="seatMap">
+            <!-- Seat map injected by JS -->
+          </div>
+        </div>
+
+        <div class="seat-summary">
+          <div class="summary-title">Flight Summary</div>
+          <div class="summary-flight-info">
+            <div class="summary-route">
+              <span class="summary-airport">CAI</span>
+              <span class="summary-arrow">→</span>
+              <span class="summary-airport">DXB</span>
+            </div>
+            <div class="summary-detail">NileAir NA401 · Sat 15 Mar</div>
+            <div class="summary-detail" style="margin-top: 4px">
+              Departure: 09:30 · Arrival: 13:45
+            </div>
+          </div>
+
+          <div class="selected-seats-list" id="selectedSeatsList">
+            <div class="no-seats-msg">
+              No seat selected yet.<br />Tap a seat on the map.
+            </div>
+          </div>
+
+          <div
+            class="price-breakdown"
+            id="priceBreakdown"
+            style="display: none"
+          >
+            <div class="price-row">
+              <span>Base fare</span><span id="baseFare">EGP 4,200</span>
+            </div>
+            <div class="price-row">
+              <span>Seat upgrade</span><span id="seatUpgrade">EGP 0</span>
+            </div>
+            <div class="price-row">
+              <span>Taxes & fees</span><span>EGP 420</span>
+            </div>
+            <div class="price-row total">
+              <span>Total</span><span id="totalPrice">EGP 4,620</span>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-gold w-full"
+            onclick="navigate('details')"
+            id="continueSeatsBtn"
+            disabled
+            style="opacity: 0.5; cursor: not-allowed"
+          >
+            Continue to Passenger Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 4: PASSENGER DETAILS ═══ -->
+    <div class="page" id="page-details">
+      <div class="page-header">
+        <div class="page-header-content">
+          <div class="page-breadcrumb">
+            <span
+              onclick="navigate('results')"
+              style="cursor: pointer; color: var(--gold)"
+              >Flights</span
+            >
+            <span class="breadcrumb-sep">›</span>
+            <span
+              onclick="navigate('seats')"
+              style="cursor: pointer; color: var(--gold)"
+              >Seats</span
+            >
+            <span class="breadcrumb-sep">›</span>
+            <span>Passenger Details</span>
+          </div>
+          <h1>Passenger Details</h1>
+          <div class="progress-steps" style="margin-top: 1.5rem">
+            <div class="step-item completed">
+              <div class="step-circle">✓</div>
+              <div class="step-label">Select</div>
+            </div>
+            <div class="step-item completed">
+              <div class="step-circle">✓</div>
+              <div class="step-label">Seats</div>
+            </div>
+            <div class="step-item active">
+              <div class="step-circle">3</div>
+              <div class="step-label">Details</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">4</div>
+              <div class="step-label">Payment</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">5</div>
+              <div class="step-label">Confirm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-layout">
+        <div class="booking-main">
+          <!-- Passenger 1 -->
+          <div class="form-card">
+            <div class="form-card-title">
+              <div class="step-badge">1</div>
+              Passenger 1 — Lead Traveller
+            </div>
+            <div class="form-2col mb-2">
+              <div class="form-group">
+                <label class="form-label">Title</label>
+                <select class="form-select">
+                  <option>Mr.</option>
+                  <option>Mrs.</option>
+                  <option>Ms.</option>
+                  <option>Dr.</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nationality</label>
+                <select class="form-select">
+                  <option>Egyptian</option>
+                  <option>American</option>
+                  <option>British</option>
+                  <option>Emirati</option>
+                  <option>Saudi</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-2col mb-2">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="As on passport"
+                  id="firstName"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="As on passport"
+                  id="lastName"
+                />
+              </div>
+            </div>
+            <div class="form-3col mb-2">
+              <div class="form-group">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Passport Number</label>
+                <input type="text" class="form-input" placeholder="A12345678" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Passport Expiry</label>
+                <input type="date" class="form-input" />
+              </div>
+            </div>
+            <div class="form-2col">
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  placeholder="your@email.com"
+                  id="email"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input
+                  type="tel"
+                  class="form-input"
+                  placeholder="+20 100 000 0000"
+                  id="phone"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Extras -->
+          <div class="form-card">
+            <div class="form-card-title">
+              <div class="step-badge">2</div>
+              Add Extras
+            </div>
+            <div class="extras-grid">
+              <label class="extra-card" onclick="toggleExtra(this)">
+                <input type="checkbox" style="display: none" />
+                <span class="extra-icon">🧳</span>
+                <span class="extra-name">Extra Baggage</span>
+                <span class="extra-desc">23kg additional checked bag</span>
+                <span class="extra-price">+ EGP 350</span>
+                <div class="extra-check"></div>
+              </label>
+              <label class="extra-card" onclick="toggleExtra(this)">
+                <input type="checkbox" style="display: none" />
+                <span class="extra-icon">🍽️</span>
+                <span class="extra-name">Meal Upgrade</span>
+                <span class="extra-desc"
+                  >Premium Egyptian cuisine selection</span
+                >
+                <span class="extra-price">+ EGP 180</span>
+                <div class="extra-check"></div>
+              </label>
+              <label class="extra-card" onclick="toggleExtra(this)">
+                <input type="checkbox" style="display: none" />
+                <span class="extra-icon">🛡️</span>
+                <span class="extra-name">Travel Insurance</span>
+                <span class="extra-desc">Full coverage including medical</span>
+                <span class="extra-price">+ EGP 250</span>
+                <div class="extra-check"></div>
+              </label>
+              <label class="extra-card" onclick="toggleExtra(this)">
+                <input type="checkbox" style="display: none" />
+                <span class="extra-icon">🚗</span>
+                <span class="extra-name">Airport Transfer</span>
+                <span class="extra-desc">Premium sedan from terminal</span>
+                <span class="extra-price">+ EGP 450</span>
+                <div class="extra-check"></div>
+              </label>
+              <label class="extra-card" onclick="toggleExtra(this)">
+                <input type="checkbox" style="display: none" />
+                <span class="extra-icon">🏨</span>
+                <span class="extra-name">Lounge Access</span>
+                <span class="extra-desc"
+                  >Pharaoh Lounge at Cairo International</span
+                >
+                <span class="extra-price">+ EGP 380</span>
+                <div class="extra-check"></div>
+              </label>
+              <label class="extra-card" onclick="toggleExtra(this)">
+                <input type="checkbox" style="display: none" />
+                <span class="extra-icon">👶</span>
+                <span class="extra-name">Priority Boarding</span>
+                <span class="extra-desc">Board first, settle in comfort</span>
+                <span class="extra-price">+ EGP 120</span>
+                <div class="extra-check"></div>
+              </label>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: flex-end">
+            <button class="btn btn-outline" onclick="navigate('seats')">
+              ← Back
+            </button>
+            <button class="btn btn-gold btn-lg" onclick="navigate('payment')">
+              Continue to Payment →
+            </button>
+          </div>
+        </div>
+
+        <div class="booking-sidebar">
+          <div class="order-card">
+            <div class="order-title">Order Summary</div>
+            <div class="order-item">
+              <span>Cairo → Dubai</span><span></span>
+            </div>
+            <div class="order-item">
+              <span>NileAir NA401</span><span></span>
+            </div>
+            <div class="order-item">
+              <span>Seat 12A (Economy)</span><span></span>
+            </div>
+            <div class="order-item">
+              <span>Base Fare</span><span>EGP 4,200</span>
+            </div>
+            <div class="order-item">
+              <span>Taxes & Fees</span><span>EGP 420</span>
+            </div>
+            <div class="order-item">
+              <span style="color: var(--gold)">Extras</span
+              ><span id="extrasTotal">EGP 0</span>
+            </div>
+            <div class="order-total">
+              <span>Total</span>
+              <span id="orderTotal">EGP 4,620</span>
+            </div>
+          </div>
+
+          <div
+            class="order-card"
+            style="background: var(--gold-glow); border-color: var(--gold)"
+          >
+            <div style="display: flex; gap: 12px; align-items: flex-start">
+              <span style="font-size: 1.5rem">🌟</span>
+              <div>
+                <div
+                  style="
+                    font-family: &quot;Cinzel&quot;, serif;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    color: var(--gold);
+                    margin-bottom: 4px;
+                  "
+                >
+                  NileAir Miles
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cairo&quot;, sans-serif;
+                    font-size: 0.75rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  You'll earn
+                  <strong style="color: var(--gold)">420 Miles</strong> with
+                  this booking. Redeem on future flights!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-card">
+            <div
+              style="
+                font-family: &quot;Cinzel&quot;, serif;
+                font-size: 0.8rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+              "
+            >
+              Have a Promo Code?
+            </div>
+            <div style="display: flex; gap: 0.5rem">
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Enter code..."
+                style="flex: 1"
+              />
+              <button class="btn btn-outline btn-sm">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 5: PAYMENT ═══ -->
+    <div class="page" id="page-payment">
+      <div class="page-header">
+        <div class="page-header-content">
+          <div class="page-breadcrumb">
+            <span
+              onclick="navigate('details')"
+              style="cursor: pointer; color: var(--gold)"
+              >Details</span
+            >
+            <span class="breadcrumb-sep">›</span>
+            <span>Payment</span>
+          </div>
+          <h1>Secure Payment</h1>
+          <div class="progress-steps" style="margin-top: 1.5rem">
+            <div class="step-item completed">
+              <div class="step-circle">✓</div>
+              <div class="step-label">Select</div>
+            </div>
+            <div class="step-item completed">
+              <div class="step-circle">✓</div>
+              <div class="step-label">Seats</div>
+            </div>
+            <div class="step-item completed">
+              <div class="step-circle">✓</div>
+              <div class="step-label">Details</div>
+            </div>
+            <div class="step-item active">
+              <div class="step-circle">4</div>
+              <div class="step-label">Payment</div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">5</div>
+              <div class="step-label">Confirm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-layout">
+        <div>
+          <!-- Payment Method -->
+          <div class="form-card">
+            <div class="form-card-title">
+              <div class="step-badge">1</div>
+              Payment Method
+            </div>
+            <div class="payment-methods">
+              <button
+                class="pay-method active"
+                onclick="switchPayMethod(this, 'card')"
+              >
+                💳 Credit / Debit Card
+              </button>
+              <button
+                class="pay-method"
+                onclick="switchPayMethod(this, 'paypal')"
+              >
+                🅿 PayPal
+              </button>
+              <button
+                class="pay-method"
+                onclick="switchPayMethod(this, 'instapay')"
+              >
+                📱 InstaPay
+              </button>
+              <button
+                class="pay-method"
+                onclick="switchPayMethod(this, 'vodafone')"
+              >
+                📲 Vodafone Cash
+              </button>
+            </div>
+
+            <div id="cardSection">
+              <!-- Card Visual -->
+              <div
+                class="credit-card-visual"
+                id="cardVisual"
+                onclick="
+                  document
+                    .getElementById('cardVisual')
+                    .classList.toggle('flipped')
+                "
+              >
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-brand">
+                      <div class="card-circle card-circle-1"></div>
+                      <div class="card-circle card-circle-2"></div>
+                    </div>
+                    <div class="card-chip"></div>
+                    <div class="card-number-display" id="cardNumDisplay">
+                      •••• •••• •••• ••••
+                    </div>
+                    <div class="card-bottom">
+                      <div>
+                        <span class="card-holder-label">Card Holder</span>
+                        <span class="card-holder-name" id="cardHolderDisplay"
+                          >FULL NAME</span
+                        >
+                      </div>
+                      <div>
+                        <span class="card-expires-label">Expires</span>
+                        <span class="card-expires-date" id="cardExpiryDisplay"
+                          >MM / YY</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="card-stripe"></div>
+                    <div
+                      style="
+                        padding: 0 1rem;
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        gap: 1rem;
+                      "
+                    >
+                      <div
+                        style="
+                          font-family: &quot;Cairo&quot;, sans-serif;
+                          font-size: 0.7rem;
+                          color: rgba(255, 255, 255, 0.5);
+                        "
+                      >
+                        CVV
+                      </div>
+                      <div class="card-cvv" id="cardCvvDisplay">•••</div>
+                    </div>
+                    <div
+                      style="
+                        position: absolute;
+                        bottom: 1rem;
+                        left: 1.5rem;
+                        right: 1.5rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                      "
+                    >
+                      <span
+                        style="
+                          font-family: &quot;Cinzel&quot;, serif;
+                          color: var(--gold);
+                          font-size: 0.85rem;
+                          letter-spacing: 2px;
+                        "
+                        >NileAir</span
+                      >
+                      <span
+                        style="
+                          font-family: &quot;Cairo&quot;, sans-serif;
+                          color: rgba(255, 255, 255, 0.5);
+                          font-size: 0.65rem;
+                        "
+                        >🔒 Secured Payment</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <div class="form-group mb-2">
+                  <label class="form-label">Card Number</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="1234 5678 9012 3456"
+                    maxlength="19"
+                    oninput="formatCardNum(this)"
+                  />
+                </div>
+                <div class="form-group mb-2">
+                  <label class="form-label">Cardholder Name</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="Name as on card"
+                    oninput="updateCardHolder(this.value)"
+                  />
+                </div>
+                <div class="form-2col">
+                  <div class="form-group">
+                    <label class="form-label">Expiry Date</label>
+                    <input
+                      type="text"
+                      class="form-input"
+                      placeholder="MM / YY"
+                      maxlength="7"
+                      oninput="formatExpiry(this)"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label"
+                      >CVV
+                      <span style="font-size: 0.65rem; color: var(--text-muted)"
+                        >(click card to reveal)</span
+                      ></label
+                    >
+                    <input
+                      type="password"
+                      class="form-input"
+                      placeholder="•••"
+                      maxlength="4"
+                      oninput="updateCvv(this.value)"
+                      onfocus="
+                        document
+                          .getElementById('cardVisual')
+                          .classList.add('flipped')
+                      "
+                      onblur="
+                        document
+                          .getElementById('cardVisual')
+                          .classList.remove('flipped')
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Address -->
+          <div class="form-card">
+            <div class="form-card-title">
+              <div class="step-badge">2</div>
+              Billing Address
+            </div>
+            <div class="form-group mb-2">
+              <label class="form-label">Country</label>
+              <select class="form-select">
+                <option>Egypt</option>
+                <option>United Arab Emirates</option>
+                <option>United Kingdom</option>
+                <option>United States</option>
+                <option>Saudi Arabia</option>
+              </select>
+            </div>
+            <div class="form-2col mb-2">
+              <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text" class="form-input" placeholder="Cairo" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Postal Code</label>
+                <input type="text" class="form-input" placeholder="11511" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Street Address</label>
+              <input
+                type="text"
+                class="form-input"
+                placeholder="123 Nile Corniche, Maadi"
+              />
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem">
+            <label
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                cursor: pointer;
+              "
+            >
+              <input
+                type="checkbox"
+                class="filter-checkbox"
+                style="margin-top: 2px; flex-shrink: 0"
+                checked
+              />
+              <span
+                style="
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                  font-size: 0.8rem;
+                  color: var(--text-secondary);
+                "
+                >I agree to NileAir's
+                <a style="color: var(--gold)">Terms of Service</a> and
+                <a style="color: var(--gold)">Privacy Policy</a>. I confirm all
+                passenger details are accurate.</span
+              >
+            </label>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end">
+              <button class="btn btn-outline" onclick="navigate('details')">
+                ← Back
+              </button>
+              <button class="btn btn-gold btn-lg" onclick="processPayment()">
+                🔒 Pay EGP 4,620 Securely
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="position: sticky; top: 90px; height: fit-content">
+          <div class="order-card">
+            <div class="order-title">Final Summary</div>
+            <div
+              class="order-item"
+              style="padding: 0.5rem 0; border-bottom: 1px solid var(--border)"
+            >
+              <div>
+                <div
+                  style="
+                    font-family: &quot;Cinzel&quot;, serif;
+                    font-size: 0.85rem;
+                    color: var(--text-primary);
+                  "
+                >
+                  Cairo → Dubai
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cairo&quot;, sans-serif;
+                    font-size: 0.7rem;
+                    color: var(--text-muted);
+                  "
+                >
+                  Sat 15 Mar · NileAir NA401
+                </div>
+              </div>
+            </div>
+            <div class="order-item mt-2">
+              <span>Seat 12A</span
+              ><span style="color: var(--text-muted)">Economy</span>
+            </div>
+            <div class="order-item">
+              <span>Base fare</span><span>EGP 4,200</span>
+            </div>
+            <div class="order-item">
+              <span>Taxes & fees</span><span>EGP 420</span>
+            </div>
+            <div class="order-total">
+              <span>Total Due</span>
+              <span>EGP 4,620</span>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: var(--bg-elevated);
+              border: 1px solid var(--border);
+              border-radius: 4px;
+              padding: 1rem;
+              margin-top: 1rem;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 0.75rem;
+              "
+            >
+              <span>🔒</span>
+              <span
+                style="
+                  font-family: &quot;Cinzel&quot;, serif;
+                  font-size: 0.75rem;
+                  color: var(--text-primary);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+                "
+                >Secure Payment</span
+              >
+            </div>
+            <div
+              style="
+                font-family: &quot;Cairo&quot;, sans-serif;
+                font-size: 0.72rem;
+                color: var(--text-muted);
+                line-height: 1.7;
+              "
+            >
+              All transactions are encrypted with 256-bit SSL. Your card details
+              are never stored on our servers.
+            </div>
+            <div
+              style="
+                display: flex;
+                gap: 8px;
+                margin-top: 0.75rem;
+                flex-wrap: wrap;
+              "
+            >
+              <span
+                style="
+                  font-size: 0.65rem;
+                  padding: 4px 8px;
+                  border: 1px solid var(--border);
+                  border-radius: 2px;
+                  color: var(--text-muted);
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                "
+                >VISA</span
+              >
+              <span
+                style="
+                  font-size: 0.65rem;
+                  padding: 4px 8px;
+                  border: 1px solid var(--border);
+                  border-radius: 2px;
+                  color: var(--text-muted);
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                "
+                >MasterCard</span
+              >
+              <span
+                style="
+                  font-size: 0.65rem;
+                  padding: 4px 8px;
+                  border: 1px solid var(--border);
+                  border-radius: 2px;
+                  color: var(--text-muted);
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                "
+                >Amex</span
+              >
+              <span
+                style="
+                  font-size: 0.65rem;
+                  padding: 4px 8px;
+                  border: 1px solid var(--border);
+                  border-radius: 2px;
+                  color: var(--text-muted);
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                "
+                >Meza</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 6: CONFIRMATION ═══ -->
+    <div class="page" id="page-confirm">
+      <div class="confirmation-page">
+        <div class="confirmation-header">
+          <div class="success-icon">✓</div>
+          <h1>Booking Confirmed!</h1>
+          <p>
+            Your journey is booked. A confirmation has been sent to your email
+            address. Safe travels!
+          </p>
+        </div>
+
+        <div class="booking-ref-card">
+          <span class="ref-label">Booking Reference</span>
+          <div class="ref-code" id="bookingRef">NA-4821</div>
+          <div
+            style="
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.7rem;
+              color: var(--text-muted);
+              margin-top: 0.5rem;
+              letter-spacing: 2px;
+            "
+          >
+            USE THIS CODE AT CHECK-IN
+          </div>
+        </div>
+
+        <!-- Boarding Pass -->
+        <div class="boarding-pass">
+          <div class="bp-header">
+            <div>
+              <div class="bp-airline">✈ NileAir</div>
+              <div
+                style="
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                  font-size: 0.65rem;
+                  color: var(--text-muted);
+                  letter-spacing: 3px;
+                  margin-top: 2px;
+                "
+              >
+                EGYPT'S PRESTIGE AIRLINE
+              </div>
+            </div>
+            <div class="bp-class-badge">ECONOMY CLASS</div>
+          </div>
+
+          <div class="bp-body">
+            <div>
+              <div class="bp-city">CAI</div>
+              <span class="bp-city-name">Cairo International</span>
+              <span class="bp-city-time">09:30</span>
+              <div
+                style="
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                  font-size: 0.7rem;
+                  color: var(--text-muted);
+                  margin-top: 4px;
+                "
+              >
+                Sat, 15 March 2025
+              </div>
+            </div>
+
+            <div class="bp-middle">
+              <div class="bp-plane-icon">✈</div>
+              <div class="bp-arrow"></div>
+              <div class="bp-duration">4h 15m</div>
+              <div
+                style="
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                  font-size: 0.65rem;
+                  color: var(--text-muted);
+                  letter-spacing: 2px;
+                "
+              >
+                DIRECT
+              </div>
+            </div>
+
+            <div class="bp-right">
+              <div class="bp-city">DXB</div>
+              <span class="bp-city-name">Dubai International</span>
+              <span class="bp-city-time">13:45</span>
+              <div
+                style="
+                  font-family: &quot;Cairo&quot;, sans-serif;
+                  font-size: 0.7rem;
+                  color: var(--text-muted);
+                  margin-top: 4px;
+                "
+              >
+                Sat, 15 March 2025
+              </div>
+            </div>
+          </div>
+
+          <hr class="bp-divider" />
+
+          <div class="bp-footer">
+            <div>
+              <span class="bp-detail-label">Passenger</span>
+              <span class="bp-detail-value" id="bpPassenger">Ahmed Hassan</span>
+            </div>
+            <div>
+              <span class="bp-detail-label">Flight</span>
+              <span class="bp-detail-value">NA401</span>
+            </div>
+            <div>
+              <span class="bp-detail-label">Seat</span>
+              <span class="bp-detail-value" id="bpSeat">12A</span>
+            </div>
+            <div>
+              <span class="bp-detail-label">Gate</span>
+              <span class="bp-detail-value">C14</span>
+            </div>
+            <div>
+              <span class="bp-detail-label">Boarding</span>
+              <span class="bp-detail-value">09:00</span>
+            </div>
+            <div class="bp-barcode" id="bpBarcode">
+              <!-- Barcode generated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="confirmation-actions">
+          <button
+            class="btn btn-outline btn-lg"
+            onclick="downloadBoardingPass()"
+          >
+            ⬇ Download Pass
+          </button>
+          <button class="btn btn-gold btn-lg" onclick="navigate('bookings')">
+            View My Bookings
+          </button>
+          <button class="btn btn-outline btn-lg" onclick="navigate('home')">
+            Book Another Flight
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 7: MY BOOKINGS ═══ -->
+    <div class="page" id="page-bookings">
+      <div class="page-header">
+        <div class="page-header-content">
+          <div class="page-breadcrumb">
+            <span
+              onclick="navigate('home')"
+              style="cursor: pointer; color: var(--gold)"
+              >Home</span
+            >
+            <span class="breadcrumb-sep">›</span>
+            <span>My Bookings</span>
+          </div>
+          <h1>My Bookings</h1>
+          <div
+            style="
+              font-family: &quot;Cairo&quot;, sans-serif;
+              font-size: 0.8rem;
+              color: var(--text-secondary);
+              margin-top: 0.5rem;
+            "
+          >
+            Manage your trips, view tickets, and check status
+          </div>
+        </div>
+      </div>
+
+      <div class="bookings-container">
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:gap:1rem;"
+        >
+          <div class="bookings-filters">
+            <button
+              class="booking-filter-btn active"
+              onclick="filterBookings(this, 'all')"
+            >
+              All Trips
+            </button>
+            <button
+              class="booking-filter-btn"
+              onclick="filterBookings(this, 'upcoming')"
+            >
+              Upcoming
+            </button>
+            <button
+              class="booking-filter-btn"
+              onclick="filterBookings(this, 'completed')"
+            >
+              Completed
+            </button>
+            <button
+              class="booking-filter-btn"
+              onclick="filterBookings(this, 'cancelled')"
+            >
+              Cancelled
+            </button>
+          </div>
+          <button class="btn btn-gold btn-sm" onclick="navigate('home')">
+            + Book New Flight
+          </button>
+        </div>
+
+        <div id="bookingsList">
+          <!-- Bookings injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 8: ABOUT ═══ -->
+    <div class="page" id="page-about">
+      <div class="about-hero">
+        <h1>Egypt's Wing to <span>the World</span></h1>
+        <p>
+          For over five decades, NileAir has carried the warmth of Egyptian
+          hospitality to every corner of the globe — connecting civilizations,
+          one flight at a time.
+        </p>
+      </div>
+
+      <div class="about-content">
+        <!-- Mission -->
+        <div class="about-grid">
+          <div class="about-text">
+            <h2>Our <span>Story</span></h2>
+            <p>
+              Founded in 1971, NileAir emerged from Egypt's ambition to connect
+              its ancient lands with the modern world. What began with a single
+              route from Cairo to London has blossomed into a network of 85+
+              destinations across 6 continents.
+            </p>
+            <p>
+              We are more than an airline. We are ambassadors of Egyptian
+              culture, bearers of 5,000 years of hospitality, and guardians of
+              the promise that every journey should feel like arriving home.
+            </p>
+            <p>
+              Today, with a fleet of 84 aircraft and over 12,000 dedicated
+              employees, NileAir continues its mission to be the bridge between
+              Egypt and the world — carrying dreams aloft on wings of gold.
+            </p>
+            <button class="btn btn-outline mt-3" onclick="navigate('results')">
+              Explore Our Destinations
+            </button>
+          </div>
+          <div class="about-image-placeholder">
+            <svg
+              viewBox="0 0 500 380"
+              xmlns="http://www.w3.org/2000/svg"
+              style="width: 100%; height: 100%"
+            >
+              <rect width="500" height="380" fill="var(--bg-secondary)" />
+              <polygon
+                points="250,60 380,300 120,300"
+                fill="var(--bg-elevated)"
+                stroke="var(--gold)"
+                stroke-width="1"
+                opacity="0.6"
+              />
+              <polygon
+                points="250,100 340,290 160,290"
+                fill="var(--bg-card)"
+                stroke="var(--gold)"
+                stroke-width="0.5"
+                opacity="0.4"
+              />
+              <line
+                x1="250"
+                y1="60"
+                x2="250"
+                y2="300"
+                stroke="var(--gold)"
+                stroke-width="0.5"
+                stroke-dasharray="3,3"
+                opacity="0.4"
+              />
+              <!-- Plane flying over pyramid -->
+              <text
+                x="300"
+                y="140"
+                font-size="24"
+                transform="rotate(-20 300 140)"
+                fill="var(--gold)"
+                opacity="0.6"
+              >
+                ✈
+              </text>
+              <!-- Sun -->
+              <circle
+                cx="80"
+                cy="80"
+                r="30"
+                fill="var(--gold)"
+                opacity="0.15"
+              />
+              <circle cx="80" cy="80" r="20" fill="var(--gold)" opacity="0.2" />
+              <!-- Nile -->
+              <path
+                d="M 0 300 Q 100 280 200 310 Q 300 330 400 300 Q 450 285 500 300 L 500 380 L 0 380 Z"
+                fill="rgba(30,100,160,0.2)"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Values -->
+        <div style="margin-bottom: 4rem">
+          <div class="section-header">
+            <span class="section-label">Our Principles</span>
+            <h2 class="section-title">What We <span>Stand For</span></h2>
+            <div class="divider">
+              <div class="divider-line"></div>
+              <div class="divider-diamond"></div>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">👑</div>
+              <div class="feature-title">Royal Hospitality</div>
+              <div class="feature-desc">
+                Egyptian hospitality has been legendary for 5,000 years. We
+                carry that tradition into every cabin, every meal, every
+                interaction with our passengers.
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🌍</div>
+              <div class="feature-title">Global Connectivity</div>
+              <div class="feature-desc">
+                We believe every Egyptian should have the world within reach.
+                And every world traveller deserves to experience the magic of
+                Egypt.
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">♻️</div>
+              <div class="feature-title">Sustainable Future</div>
+              <div class="feature-desc">
+                By 2030, NileAir commits to reducing carbon emissions by 40%
+                through fleet modernization, sustainable fuels, and green ground
+                operations.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leadership -->
+        <div style="margin-bottom: 4rem">
+          <div class="section-header">
+            <span class="section-label">Leadership Team</span>
+            <h2 class="section-title">The <span>Visionaries</span></h2>
+            <div class="divider">
+              <div class="divider-line"></div>
+              <div class="divider-diamond"></div>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+          <div class="leadership-grid">
+            <div class="leader-card">
+              <div class="leader-avatar">KA</div>
+              <span class="leader-name">Karim Al-Masri</span>
+              <span class="leader-title">Chief Executive Officer</span>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: var(--text-secondary);
+                  margin-top: 0.75rem;
+                  line-height: 1.7;
+                  font-style: italic;
+                "
+              >
+                "NileAir is not just a carrier — it is Egypt's ambassador to the
+                world."
+              </p>
+            </div>
+            <div class="leader-card">
+              <div class="leader-avatar">NA</div>
+              <span class="leader-name">Nadia Abdel-Aziz</span>
+              <span class="leader-title">Chief Operations Officer</span>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: var(--text-secondary);
+                  margin-top: 0.75rem;
+                  line-height: 1.7;
+                  font-style: italic;
+                "
+              >
+                "Precision and care in every departure. We never compromise on
+                excellence."
+              </p>
+            </div>
+            <div class="leader-card">
+              <div class="leader-avatar">OZ</div>
+              <span class="leader-name">Omar Zaki</span>
+              <span class="leader-title">Chief Commercial Officer</span>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: var(--text-secondary);
+                  margin-top: 0.75rem;
+                  line-height: 1.7;
+                  font-style: italic;
+                "
+              >
+                "Growth is only meaningful when it serves our passengers and our
+                nation."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="contact-section">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <span class="contact-text-label">Headquarters</span>
+                <span class="contact-text-value"
+                  >NileAir Tower, Cairo International Airport, Cairo, Egypt
+                  11776</span
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <span class="contact-text-label">24/7 Reservations</span>
+                <span class="contact-text-value">+20 2 2265 0000</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <span class="contact-text-label">Email</span>
+                <span class="contact-text-value">reservations@nileair.eg</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕐</div>
+              <div>
+                <span class="contact-text-label">Support Hours</span>
+                <span class="contact-text-value"
+                  >24 hours, 7 days a week, 365 days a year</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Send a Message</h3>
+            <div class="form-group mb-2">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" placeholder="Full name" />
+            </div>
+            <div class="form-group mb-2">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-input"
+                placeholder="your@email.com"
+              />
+            </div>
+            <div class="form-group mb-2">
+              <label class="form-label">Subject</label>
+              <select class="form-select">
+                <option>Flight Booking</option>
+                <option>Existing Reservation</option>
+                <option>Baggage Inquiry</option>
+                <option>NileAir Miles</option>
+                <option>Complaint / Feedback</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label">Message</label>
+              <textarea
+                class="form-input"
+                rows="4"
+                placeholder="How can we help you?"
+                style="resize: vertical; min-height: 120px"
+              ></textarea>
+            </div>
+            <button
+              class="btn btn-gold w-full"
+              onclick="
+                showNotification(
+                  '✅',
+                  'Message sent! Our team will respond within 24 hours.',
+                )
+              "
+            >
+              Send Message
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div
+              class="logo-text"
+              style="
+                font-family: &quot;Cinzel&quot;, serif;
+                color: var(--gold);
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+              "
+            >
+              NileAir
+            </div>
+            <p class="footer-tagline">
+              Egypt's prestige airline. Connecting the land of pharaohs to the
+              world since 1971.
+            </p>
+          </div>
+          <div>
+            <div class="footer-col-title">Quick Links</div>
+            <ul class="footer-links">
+              <li><a onclick="navigate('home')">Home</a></li>
+              <li><a onclick="navigate('results')">Search Flights</a></li>
+              <li><a onclick="navigate('bookings')">My Bookings</a></li>
+              <li><a onclick="navigate('about')">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Support</div>
+            <ul class="footer-links">
+              <li><a>FAQ</a></li>
+              <li><a>Baggage Policy</a></li>
+              <li><a>Check-in Guide</a></li>
+              <li><a>Flight Status</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Contact</div>
+            <ul class="footer-links">
+              <li><a>+20 2 2265 0000</a></li>
+              <li><a>reservations@nileair.eg</a></li>
+              <li><a>Cairo HQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2024 NileAir. All rights reserved.</div>
+          <div class="footer-legal">
+            <a>Privacy</a><a>Terms</a><a>Cookies</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      <span class="notification-icon" id="notifIcon">✅</span>
+      <span id="notifMsg">Action completed successfully</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+   JAVASCRIPT
+═══════════════════════════════════════════ -->
+    <script>
+      /* ── ROUTING ── */
+      let currentPage = "home";
+      const pages = [
+        "home",
+        "results",
+        "seats",
+        "details",
+        "payment",
+        "confirm",
+        "bookings",
+        "about",
+      ];
+
+      function navigate(page) {
+        pages.forEach((p) => {
+          const el = document.getElementById("page-" + p);
+          if (el) el.classList.remove("active");
+        });
+        const target = document.getElementById("page-" + page);
+        if (target) {
+          target.classList.add("active");
+          currentPage = page;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        // update nav active state
+        document.querySelectorAll(".nav-links a").forEach((a) => {
+          a.classList.toggle("active", a.dataset.page === page);
+        });
+        // init page-specific stuff
+        if (page === "seats") initSeatMap();
+        if (page === "results") renderFlights();
+        if (page === "bookings") renderBookings();
+        if (page === "confirm") initBoardingPass();
+      }
+
+      /* ── THEME ── */
+      function toggleTheme() {
+        const html = document.documentElement;
+        html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+      }
+
+      /* ── SEARCH TABS ── */
+      function switchTab(btn, mode) {
+        document
+          .querySelectorAll(".search-tab")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+
+      /* ── SEARCH ── */
+      function searchFlights() {
+        const from = document.getElementById("fromCity");
+        const to = document.getElementById("toCity");
+        const date = document.getElementById("departDate");
+        const pax = document.getElementById("passengers");
+
+        if (!from.value || !to.value) {
+          showNotification("⚠️", "Please select origin and destination.");
+          return;
+        }
+
+        const fromText = from.options[from.selectedIndex].text;
+        const toText = to.options[to.selectedIndex].text;
+
+        document.getElementById("resultsTitle").textContent =
+          fromText.split(" ")[0] + " → " + toText.split(" ")[0];
+        document.getElementById("resultsPax").textContent =
+          pax.options[pax.selectedIndex].text;
+        if (date.value) {
+          const d = new Date(date.value);
+          document.getElementById("resultsDate").textContent =
+            d.toLocaleDateString("en-GB", {
+              weekday: "short",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+        }
+
+        navigate("results");
+      }
+
+      /* ── FLIGHT DATA ── */
+      const flightsData = [
+        {
+          id: 1,
+          airline: "NileAir",
+          code: "NA401",
+          from: "CAI",
+          to: "DXB",
+          dep: "09:30",
+          arr: "13:45",
+          dur: "4h 15m",
+          stops: "Non-stop",
+          price: 4200,
+          logo: "🏛️",
+          tags: ["Best Value", "NileAir Miles"],
+          class: "Economy",
+        },
+        {
+          id: 2,
+          airline: "NileAir",
+          code: "NA405",
+          from: "CAI",
+          to: "DXB",
+          dep: "14:00",
+          arr: "18:20",
+          dur: "4h 20m",
+          stops: "Non-stop",
+          price: 4850,
+          logo: "🏛️",
+          tags: ["Business Available"],
+          class: "Economy",
+        },
+        {
+          id: 3,
+          airline: "Emirates",
+          code: "EK926",
+          from: "CAI",
+          to: "DXB",
+          dep: "07:15",
+          arr: "11:30",
+          dur: "4h 15m",
+          stops: "Non-stop",
+          price: 5100,
+          logo: "✈",
+          tags: ["Free Meal"],
+          class: "Economy",
+        },
+        {
+          id: 4,
+          airline: "NileAir",
+          code: "NA411",
+          from: "CAI",
+          to: "DXB",
+          dep: "21:00",
+          arr: "01:15",
+          dur: "4h 15m",
+          stops: "Non-stop",
+          price: 3900,
+          logo: "🏛️",
+          tags: ["Late Night Saver"],
+          class: "Economy",
+        },
+        {
+          id: 5,
+          airline: "Emirates",
+          code: "EK924",
+          from: "CAI",
+          to: "DXB",
+          dep: "10:45",
+          arr: "16:00",
+          dur: "5h 15m",
+          stops: "1 Stop",
+          price: 3200,
+          logo: "✈",
+          tags: ["Cheapest"],
+          class: "Economy",
+        },
+        {
+          id: 6,
+          airline: "Turkish Airlines",
+          code: "TK6",
+          from: "CAI",
+          to: "DXB",
+          dep: "06:00",
+          arr: "13:30",
+          dur: "7h 30m",
+          stops: "1 Stop (IST)",
+          price: 2900,
+          logo: "🌙",
+          tags: ["Budget"],
+          class: "Economy",
+        },
+        {
+          id: 7,
+          airline: "NileAir",
+          code: "NA403",
+          from: "CAI",
+          to: "DXB",
+          dep: "17:30",
+          arr: "21:50",
+          dur: "4h 20m",
+          stops: "Non-stop",
+          price: 7200,
+          logo: "🏛️",
+          tags: ["Business Class"],
+          class: "Business",
+        },
+        {
+          id: 8,
+          airline: "NileAir",
+          code: "NA401F",
+          from: "CAI",
+          to: "DXB",
+          dep: "09:30",
+          arr: "13:45",
+          dur: "4h 15m",
+          stops: "Non-stop",
+          price: 14500,
+          logo: "👑",
+          tags: ["First Class", "Lie-Flat Bed"],
+          class: "First",
+        },
+      ];
+
+      let selectedFlight = null;
+      let selectedClassTab = {};
+
+      function renderFlights() {
+        const list = document.getElementById("flightsList");
+        list.innerHTML = flightsData
+          .map(
+            (f) => `
+    <div class="flight-card ${selectedFlight && selectedFlight.id === f.id ? "selected" : ""}" onclick="selectFlight(${f.id})" id="fc-${f.id}">
+      <div class="flight-info">
+        <div class="airline-badge">
+          <div class="airline-logo-sm">${f.logo}</div>
+          <div>
+            <span class="airline-name-sm">${f.airline}</span>
+            <span class="flight-number">${f.code}</span>
+          </div>
+        </div>
+        <div class="flight-route">
+          <div>
+            <div class="route-time">${f.dep}</div>
+            <div class="route-code">${f.from}</div>
+          </div>
+          <div class="route-line">
+            <div class="route-duration">${f.dur}</div>
+            <div class="route-bar"></div>
+            <div class="route-stops ${f.stops === "Non-stop" ? "nonstop" : ""}">${f.stops}</div>
+          </div>
+          <div>
+            <div class="route-time">${f.arr}</div>
+            <div class="route-code">${f.to}</div>
+          </div>
+        </div>
+        <div class="flight-tags">
+          ${f.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
+        </div>
+      </div>
+      <div class="flight-price-col">
+        <div class="flight-class-tabs">
+          <button class="class-tab ${f.class === "Economy" ? "active" : ""}" onclick="event.stopPropagation();setClass(${f.id},'Economy',this)">Eco</button>
+          <button class="class-tab ${f.class === "Business" ? "active" : ""}" onclick="event.stopPropagation();setClass(${f.id},'Business',this)">Biz</button>
+          <button class="class-tab ${f.class === "First" ? "active" : ""}" onclick="event.stopPropagation();setClass(${f.id},'First',this)">1st</button>
+        </div>
+        <div class="flight-price">
+          <div class="price-from">From</div>
+          <div class="price-amount">EGP <span>${f.price.toLocaleString()}</span></div>
+          <div class="price-per">per passenger</div>
+        </div>
+        <button class="btn btn-gold btn-sm" onclick="event.stopPropagation();bookFlight(${f.id})">Select →</button>
+      </div>
+    </div>
+  `,
+          )
+          .join("");
+      }
+
+      function selectFlight(id) {
+        selectedFlight = flightsData.find((f) => f.id === id);
+        document
+          .querySelectorAll(".flight-card")
+          .forEach((c) => c.classList.remove("selected"));
+        const card = document.getElementById("fc-" + id);
+        if (card) card.classList.add("selected");
+      }
+
+      function setClass(id, cls, btn) {
+        btn
+          .closest(".flight-class-tabs")
+          .querySelectorAll(".class-tab")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+
+      function bookFlight(id) {
+        selectedFlight = flightsData.find((f) => f.id === id);
+        showNotification(
+          "✈️",
+          `Flight ${selectedFlight.code} selected! Choose your seat.`,
+        );
+        setTimeout(() => navigate("seats"), 600);
+      }
+
+      function activateSortBtn(btn) {
+        document
+          .querySelectorAll(".sort-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+
+      /* ── SEAT MAP ── */
+      const occupiedSeats = new Set([
+        "1A",
+        "1C",
+        "2B",
+        "3D",
+        "3F",
+        "5A",
+        "5C",
+        "6B",
+        "7A",
+        "8C",
+        "8F",
+        "9D",
+        "10B",
+        "11A",
+        "11E",
+        "12C",
+        "13F",
+        "14A",
+        "15B",
+        "16D",
+        "17C",
+        "18A",
+        "18E",
+        "19B",
+        "20F",
+        "21A",
+        "22C",
+        "23D",
+        "24E",
+        "25A",
+        "26B",
+        "27C",
+        "28F",
+        "29A",
+        "30D",
+        "31B",
+      ]);
+      let selectedSeats = new Set();
+
+      function initSeatMap() {
+        const map = document.getElementById("seatMap");
+        map.innerHTML = "";
+
+        const nose = document.createElement("div");
+        nose.className = "plane-nose";
+        nose.innerHTML = `<svg width="30" height="20" viewBox="0 0 30 20"><path d="M15 0 L30 20 L0 20 Z" fill="var(--bg-card)" stroke="var(--gold)" stroke-width="0.5" opacity="0.5"/></svg>`;
+        map.appendChild(nose);
+
+        const body = document.createElement("div");
+        body.className = "plane-body";
+
+        // First Class (rows 1-3)
+        body.innerHTML += `<div class="plane-section-label section-first">👑 FIRST CLASS</div>`;
+        for (let r = 1; r <= 3; r++) {
+          body.appendChild(
+            buildRow(r, ["A", "", "C", "", "D", "", "F"], "first-class"),
+          );
+        }
+
+        body.innerHTML += `<div class="plane-section-label section-business">BUSINESS CLASS</div>`;
+        for (let r = 4; r <= 10; r++) {
+          body.appendChild(
+            buildRow(r, ["A", "B", "", "C", "D", "", "E", "F"], "business"),
+          );
+        }
+
+        body.innerHTML += `<div class="plane-section-label section-economy">ECONOMY CLASS</div>`;
+        for (let r = 11; r <= 34; r++) {
+          body.appendChild(buildRow(r, ["A", "B", "C", "", "D", "E", "F"], ""));
+        }
+
+        map.appendChild(body);
+
+        const tail = document.createElement("div");
+        tail.className = "plane-tail";
+        map.appendChild(tail);
+
+        updateSeatSummary();
+      }
+
+      function buildRow(rowNum, seats, seatClass) {
+        const row = document.createElement("div");
+        row.className = "seat-row";
+
+        const num = document.createElement("div");
+        num.className = "row-num";
+        num.textContent = rowNum;
+        row.appendChild(num);
+
+        seats.forEach((s) => {
+          if (!s) {
+            const aisle = document.createElement("div");
+            aisle.className = "aisle";
+            row.appendChild(aisle);
+          } else {
+            const seatId = rowNum + s;
+            const div = document.createElement("div");
+            div.className = "seat " + seatClass;
+            div.textContent = s;
+            div.dataset.id = seatId;
+            div.title = seatId;
+            if (occupiedSeats.has(seatId)) {
+              div.classList.add("occupied");
+            } else if (selectedSeats.has(seatId)) {
+              div.classList.add("selected");
+              div.textContent = "✓";
+            }
+            div.onclick = () => toggleSeat(seatId, div, seatClass);
+            row.appendChild(div);
+          }
+        });
+        return row;
+      }
+
+      function getSeatPrice(seatClass) {
+        if (seatClass === "first-class") return 10300;
+        if (seatClass === "business") return 1800;
+        return 0;
+      }
+
+      function toggleSeat(id, el, seatClass) {
+        if (occupiedSeats.has(id)) return;
+        if (selectedSeats.has(id)) {
+          selectedSeats.delete(id);
+          el.classList.remove("selected");
+          el.textContent = id.slice(-1);
+        } else {
+          if (selectedSeats.size >= 1) {
+            showNotification(
+              "ℹ️",
+              "Maximum 1 seat for this booking. Deselect current seat first.",
+            );
+            return;
+          }
+          selectedSeats.add(id);
+          el.classList.add("selected");
+          el.textContent = "✓";
+          el.dataset.class = seatClass;
+        }
+        updateSeatSummary();
+      }
+
+      function updateSeatSummary() {
+        const list = document.getElementById("selectedSeatsList");
+        const breakdown = document.getElementById("priceBreakdown");
+        const btn = document.getElementById("continueSeatsBtn");
+
+        if (selectedSeats.size === 0) {
+          list.innerHTML =
+            '<div class="no-seats-msg">No seat selected yet.<br>Tap a seat on the map.</div>';
+          breakdown.style.display = "none";
+          btn.disabled = true;
+          btn.style.opacity = "0.5";
+          btn.style.cursor = "not-allowed";
+          return;
+        }
+
+        let html = "";
+        let totalUpgrade = 0;
+
+        selectedSeats.forEach((id) => {
+          const el = document.querySelector(`.seat[data-id="${id}"]`);
+          const sc = el ? el.dataset.class || "" : "";
+          const price = getSeatPrice(sc);
+          totalUpgrade += price;
+          const className =
+            sc === "first-class"
+              ? "First Class"
+              : sc === "business"
+                ? "Business"
+                : "Economy";
+          html += `
+      <div class="selected-seat-item">
+        <div><span class="seat-id">Seat ${id}</span><br><span class="seat-class">${className}</span></div>
+        <span class="seat-price">${price > 0 ? "+EGP " + price.toLocaleString() : "Included"}</span>
+      </div>`;
+        });
+
+        list.innerHTML = html;
+        breakdown.style.display = "block";
+        const base = 4200;
+        const taxes = 420;
+        document.getElementById("baseFare").textContent =
+          "EGP " + base.toLocaleString();
+        document.getElementById("seatUpgrade").textContent =
+          "EGP " + totalUpgrade.toLocaleString();
+        document.getElementById("totalPrice").textContent =
+          "EGP " + (base + totalUpgrade + taxes).toLocaleString();
+        btn.disabled = false;
+        btn.style.opacity = "1";
+        btn.style.cursor = "pointer";
+
+        // Save selected seat for boarding pass
+        window.selectedSeatId = [...selectedSeats][0];
+      }
+
+      /* ── EXTRAS ── */
+      let extrasAmount = 0;
+      const extraPrices = [350, 180, 250, 450, 380, 120];
+
+      function toggleExtra(card) {
+        card.classList.toggle("selected");
+        const check = card.querySelector(".extra-check");
+        check.textContent = card.classList.contains("selected") ? "✓" : "";
+
+        extrasAmount = 0;
+        document.querySelectorAll(".extra-card.selected").forEach((c, i) => {
+          const priceText = c.querySelector(".extra-price").textContent;
+          const match = priceText.match(/(\d+)/);
+          if (match) extrasAmount += parseInt(match[1]);
+        });
+
+        const extrasEl = document.getElementById("extrasTotal");
+        const orderEl = document.getElementById("orderTotal");
+        if (extrasEl)
+          extrasEl.textContent = "EGP " + extrasAmount.toLocaleString();
+        if (orderEl)
+          orderEl.textContent = "EGP " + (4620 + extrasAmount).toLocaleString();
+      }
+
+      /* ── PAYMENT ── */
+      function formatCardNum(input) {
+        let v = input.value.replace(/\D/g, "");
+        v = v.substring(0, 16);
+        let formatted = v.replace(/(.{4})/g, "$1 ").trim();
+        input.value = formatted;
+        const display = v.padEnd(16, "•");
+        document.getElementById("cardNumDisplay").textContent = display
+          .replace(/(.{4})/g, "$1 ")
+          .trim();
+      }
+
+      function updateCardHolder(val) {
+        document.getElementById("cardHolderDisplay").textContent =
+          val.toUpperCase() || "FULL NAME";
+      }
+
+      function formatExpiry(input) {
+        let v = input.value.replace(/\D/g, "");
+        if (v.length >= 2) v = v.substring(0, 2) + " / " + v.substring(2, 4);
+        input.value = v;
+        document.getElementById("cardExpiryDisplay").textContent =
+          v || "MM / YY";
+      }
+
+      function updateCvv(val) {
+        document.getElementById("cardCvvDisplay").textContent = val || "•••";
+      }
+
+      function switchPayMethod(btn, method) {
+        document
+          .querySelectorAll(".pay-method")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const cardSection = document.getElementById("cardSection");
+        cardSection.style.display = method === "card" ? "block" : "none";
+      }
+
+      function processPayment() {
+        showNotification("⏳", "Processing your payment securely...");
+        setTimeout(() => {
+          showNotification("✅", "Payment successful! Booking confirmed.");
+          setTimeout(() => navigate("confirm"), 800);
+        }, 2500);
+      }
+
+      /* ── BOOKING CONFIRMATION ── */
+      function initBoardingPass() {
+        // Generate booking reference
+        const ref = "NA-" + Math.floor(1000 + Math.random() * 9000);
+        document.getElementById("bookingRef").textContent = ref;
+
+        // Set seat
+        const seatEl = document.getElementById("bpSeat");
+        if (window.selectedSeatId) seatEl.textContent = window.selectedSeatId;
+
+        // Set passenger name
+        const fn = document.getElementById("firstName");
+        const ln = document.getElementById("lastName");
+        const name =
+          fn && fn.value
+            ? fn.value + " " + (ln ? ln.value : "")
+            : "Ahmed Hassan";
+        document.getElementById("bpPassenger").textContent =
+          name.trim() || "Ahmed Hassan";
+
+        // Generate barcode
+        const bc = document.getElementById("bpBarcode");
+        bc.innerHTML = "";
+        const heights = [
+          40, 25, 38, 20, 48, 30, 42, 18, 35, 45, 22, 38, 28, 48, 32,
+        ];
+        heights.forEach((h) => {
+          const bar = document.createElement("div");
+          bar.className = "barcode-bar";
+          bar.style.height = h + "px";
+          bc.appendChild(bar);
+        });
+
+        // Add to bookings list
+        addToBookings(ref);
+      }
+
+      /* ── BOOKINGS ── */
+      const bookingsData = [
+        {
+          ref: "NA-7291",
+          route: "Cairo → London",
+          flight: "NA201",
+          date: "28 Feb 2025",
+          time: "10:15",
+          price: "EGP 11,200",
+          status: "upcoming",
+        },
+        {
+          ref: "NA-5563",
+          route: "Cairo → Dubai",
+          flight: "NA401",
+          date: "15 Jan 2025",
+          time: "09:30",
+          price: "EGP 4,620",
+          status: "completed",
+        },
+        {
+          ref: "NA-3812",
+          route: "Cairo → Istanbul",
+          flight: "NA601",
+          date: "05 Dec 2024",
+          time: "07:00",
+          price: "EGP 6,800",
+          status: "completed",
+        },
+        {
+          ref: "NA-1944",
+          route: "Cairo → Paris",
+          flight: "NA101",
+          date: "10 Nov 2024",
+          time: "14:30",
+          price: "EGP 9,800",
+          status: "cancelled",
+        },
+      ];
+
+      function addToBookings(ref) {
+        const exists = bookingsData.find((b) => b.ref === ref);
+        if (!exists) {
+          bookingsData.unshift({
+            ref,
+            route: "Cairo → Dubai",
+            flight: "NA401",
+            date: "15 Mar 2025",
+            time: "09:30",
+            price: "EGP 4,620",
+            status: "confirmed",
+          });
+        }
+      }
+
+      function renderBookings(filter = "all") {
+        const list = document.getElementById("bookingsList");
+        if (!list) return;
+
+        const data =
+          filter === "all"
+            ? bookingsData
+            : bookingsData.filter((b) => b.status === filter);
+
+        if (!data.length) {
+          list.innerHTML = `<div style="text-align:center;padding:4rem;color:var(--text-muted);font-family:'Cairo',sans-serif;">No bookings found.</div>`;
+          return;
+        }
+
+        list.innerHTML = data
+          .map(
+            (b) => `
+    <div class="booking-record" onclick="showBookingDetail('${b.ref}')">
+      <div class="booking-status status-${b.status}"></div>
+      <div class="booking-route-info">
+        <div class="booking-route-label">${b.route}</div>
+        <div class="booking-details">Flight ${b.flight} · Ref: ${b.ref}</div>
+      </div>
+      <div class="booking-date">
+        <span class="booking-date-main">${b.date}</span>
+        <span class="booking-date-time">${b.time} departure</span>
+      </div>
+      <div class="booking-price-col">
+        <span class="booking-price-amount">${b.price}</span>
+        <span class="booking-status-label label-${b.status}">${b.status.charAt(0).toUpperCase() + b.status.slice(1)}</span>
+      </div>
+    </div>
+  `,
+          )
+          .join("");
+      }
+
+      function filterBookings(btn, filter) {
+        document
+          .querySelectorAll(".booking-filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderBookings(filter);
+      }
+
+      function showBookingDetail(ref) {
+        showNotification("📋", `Viewing booking ${ref}`);
+      }
+
+      /* ── NOTIFICATION ── */
+      function showNotification(icon, msg) {
+        const n = document.getElementById("notification");
+        document.getElementById("notifIcon").textContent = icon;
+        document.getElementById("notifMsg").textContent = msg;
+        n.classList.add("show");
+        clearTimeout(window._notifTimer);
+        window._notifTimer = setTimeout(() => n.classList.remove("show"), 3500);
+      }
+
+      /* ── DOWNLOAD BOARDING PASS ── */
+      function downloadBoardingPass() {
+        showNotification("⬇️", "Boarding pass downloaded to your device.");
+      }
+
+      /* ── STATS ANIMATION ── */
+      function animateStats() {
+        document.querySelectorAll(".stat-number[data-target]").forEach((el) => {
+          const target = parseInt(el.dataset.target);
+          const duration = 2000;
+          const start = performance.now();
+          const startVal = 0;
+          const update = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            let val = Math.floor(startVal + (target - startVal) * ease);
+            if (target >= 1000000)
+              el.textContent = (val / 1000000).toFixed(1) + "M+";
+            else if (target >= 1000)
+              el.textContent = (val / 1000).toFixed(0) + "K+";
+            else
+              el.textContent =
+                val +
+                (target < 100
+                  ? el.nextElementSibling.textContent.includes("%")
+                    ? "%"
+                    : "+"
+                  : "+");
+            if (progress < 1) requestAnimationFrame(update);
+          };
+          const obs = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+              requestAnimationFrame(update);
+              obs.disconnect();
+            }
+          });
+          obs.observe(el);
+        });
+      }
+
+      /* ── INIT ── */
+      window.addEventListener("load", () => {
+        // Set default date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const dateInput = document.getElementById("departDate");
+        if (dateInput) dateInput.value = tomorrow.toISOString().split("T")[0];
+
+        animateStats();
+        renderFlights();
+        renderBookings();
+      });
+
+      // Scroll nav shadow
+      window.addEventListener("scroll", () => {
+        const nav = document.getElementById("mainNav");
+        nav.style.boxShadow =
+          window.scrollY > 20 ? "0 4px 30px var(--shadow)" : "none";
+      });
+    </script>
+  </body>
+</html>
