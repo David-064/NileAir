@@ -1,0 +1,81 @@
+/* ============================================================
+   themes.css — Theme System for Nile Horizon Airlines
+   ----------------------------------------------------------
+   This file defines two visual themes (Light & Dark) using
+   CSS custom properties (variables). The active theme is
+   controlled by a data-theme attribute on the <html> element,
+   which is toggled by theme-toggle.js.
+   ============================================================ */
+
+/* ---- Light Mode (Default) ---- */
+:root,
+[data-theme="light"] {
+  /* Backgrounds */
+  --bg-primary: #f8f6f1;
+  --bg-secondary: #f0ece4;
+  --bg-navbar: rgba(248, 246, 241, 0.85);
+  --bg-card: #ffffff;
+  --bg-input: #faf9f7;
+  --bg-hero: linear-gradient(160deg, #f8f6f1 0%, #ece6d8 100%);
+  --hero-overlay: radial-gradient(circle at 30% 20%, rgba(197, 164, 90, 0.08) 0%, transparent 60%);
+  --bg-tag: rgba(197, 164, 90, 0.12);
+
+  /* Text */
+  --text-primary: #1a1a2e;
+  --text-secondary: #6b6b80;
+
+  /* Accent Colors — Egyptian Gold & Nile Blue */
+  --accent-gold: #c5a45a;
+  --accent-gold-light: #d4b97a;
+  --accent-gold-glow: rgba(197, 164, 90, 0.25);
+  --accent-blue: #1a6fa0;
+
+  /* Borders */
+  --border-subtle: rgba(26, 26, 46, 0.08);
+  --border-input: rgba(26, 26, 46, 0.15);
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(26, 26, 46, 0.06);
+  --shadow-card-hover: 0 12px 40px rgba(26, 26, 46, 0.12);
+
+  /* Validation */
+  --error-color: #d94452;
+  --error-glow: rgba(217, 68, 82, 0.15);
+  --success-color: #2ecc71;
+}
+
+/* ---- Dark Mode ---- */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #16162a;
+  --bg-navbar: rgba(15, 15, 26, 0.9);
+  --bg-card: #1a1a30;
+  --bg-input: #12122a;
+  --bg-hero: linear-gradient(160deg, #0f0f1a 0%, #1a1a30 100%);
+  --hero-overlay: radial-gradient(circle at 30% 20%, rgba(197, 164, 90, 0.06) 0%, transparent 60%);
+  --bg-tag: rgba(197, 164, 90, 0.15);
+
+  /* Text */
+  --text-primary: #e8e6e1;
+  --text-secondary: #9090a8;
+
+  /* Accent Colors — same gold & blue tones */
+  --accent-gold: #d4b97a;
+  --accent-gold-light: #e2cfa0;
+  --accent-gold-glow: rgba(212, 185, 122, 0.2);
+  --accent-blue: #3a9fd5;
+
+  /* Borders */
+  --border-subtle: rgba(232, 230, 225, 0.08);
+  --border-input: rgba(232, 230, 225, 0.12);
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.45);
+
+  /* Validation */
+  --error-color: #e74c5a;
+  --error-glow: rgba(231, 76, 90, 0.2);
+  --success-color: #2ecc71;
+}

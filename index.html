@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+  <!-- ======================================================
+       index.html — Homepage for Nile Horizon Airlines
+       Features: Navbar, theme toggle, hero banner,
+       flight search form, popular routes section.
+       ====================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nile Horizon Airlines — Fly the Heart of Egypt</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="themes.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!--Icon-->
+  <link rel="icon" type="img/jpeg" href="plane.png">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <nav class="navbar" id="mainNav">
+    <div class="navbar__logo">
+      <span class="navbar__logo-icon">✈️</span>
+      <span class="navbar__logo-text">Nile Horizon</span>
+    </div>
+
+    <ul class="navbar__links">
+      <li><a href="index.html" class="navbar__link navbar__link--active">Home</a></li>
+      <li><a href="destinations.html" class="navbar__link">Destinations</a></li>
+      <li><a href="book.html" class="navbar__link">Book</a></li>
+      <li><a href="tickets.html" class="navbar__link">My Ticket</a></li>
+      <li><a href="offers.html" class="navbar__link">Offers</a></li>
+      <li><a href="about.html" class="navbar__link">About</a></li>
+      <li><a href="contact.html" class="navbar__link">Contact</a></li>
+      <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+    </ul>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">🌙</button>
+  </nav>
+
+  <!-- ==================== HERO BANNER ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <span class="hero__tagline">Welcome Aboard</span>
+      <h1 class="hero__title">
+        Discover Egypt from <span>Above the Clouds</span>
+      </h1>
+      <p class="hero__description">
+        From the Pyramids of Giza to the shores of the Red Sea — explore
+        Egypt's most breathtaking destinations with Nile Horizon Airlines.
+      </p>
+      <a href="book.html" class="btn btn--primary">Book Your Flight</a>
+    </div>
+  </section>
+
+  <!-- ==================== FLIGHT SEARCH ==================== -->
+  <section class="search-section" id="searchSection">
+    <div class="container">
+      <h2 class="section-title">Search Flights</h2>
+      <p class="section-subtitle">Find the best route for your next adventure</p>
+
+      <div class="search-card">
+        <form class="search-form" id="searchForm">
+          <!-- From -->
+          <div class="form-group">
+            <label for="fromCity">From</label>
+            <select id="fromCity" name="fromCity">
+              <option value="">— Select City —</option>
+              <option value="Cairo">Cairo</option>
+              <option value="Alexandria">Alexandria</option>
+              <option value="Luxor">Luxor</option>
+              <option value="Aswan">Aswan</option>
+            </select>
+            <span class="error-message" id="fromCityError"></span>
+          </div>
+
+          <!-- To -->
+          <div class="form-group">
+            <label for="toCity">To</label>
+            <select id="toCity" name="toCity">
+              <option value="">— Select City —</option>
+              <option value="Luxor">Luxor</option>
+              <option value="Aswan">Aswan</option>
+              <option value="Hurghada">Hurghada</option>
+              <option value="Sharm El-Sheikh">Sharm El-Sheikh</option>
+              <option value="Cairo">Cairo</option>
+            </select>
+            <span class="error-message" id="toCityError"></span>
+          </div>
+
+          <!-- Date -->
+          <div class="form-group">
+            <label for="flightDate">Travel Date</label>
+            <input type="date" id="flightDate" name="flightDate" />
+            <span class="error-message" id="flightDateError"></span>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group" style="justify-content: flex-end;">
+            <button type="submit" class="btn btn--primary" id="searchBtn">
+              🔍 Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== POPULAR ROUTES ==================== -->
+  <section class="destinations-section" id="destinationsSection">
+    <div class="container">
+      <h2 class="section-title">Popular Routes</h2>
+      <p class="section-subtitle">Most-loved domestic flights across Egypt</p>
+
+      <div class="destinations-grid">
+        <!-- Card 1 -->
+        <div class="destination-card">
+          <div class="destination-card__icon">🏛️</div>
+          <h3 class="destination-card__route">Cairo → Luxor</h3>
+          <p class="destination-card__price">1,850 EGP</p>
+          <p class="destination-card__duration">1h 15m · Daily</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="destination-card">
+          <div class="destination-card__icon">🏖️</div>
+          <h3 class="destination-card__route">Cairo → Sharm El-Sheikh</h3>
+          <p class="destination-card__price">2,200 EGP</p>
+          <p class="destination-card__duration">1h 15m · Daily</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="destination-card">
+          <div class="destination-card__icon">⛵</div>
+          <h3 class="destination-card__route">Alexandria → Aswan</h3>
+          <p class="destination-card__price">2,500 EGP</p>
+          <p class="destination-card__duration">2h 00m · Mon, Wed, Fri</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="destination-card">
+          <div class="destination-card__icon">🤿</div>
+          <h3 class="destination-card__route">Cairo → Hurghada</h3>
+          <p class="destination-card__price">1,950 EGP</p>
+          <p class="destination-card__duration">1h 10m · Daily</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <p>&copy; 2026 <a href="index.html">Nile Horizon Airlines</a> — Faculty Project. All rights reserved.</p>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Project scripts -->
+  <script src="dummy-data.js"></script>
+  <script src="validation.js"></script>
+  <script src="theme-toggle.js"></script>
+
+</body>
+</html>

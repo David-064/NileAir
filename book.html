@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <!-- ======================================================
+       book.html — Passenger Booking Form
+       Collects: Full Name, National ID / Passport,
+       Email, Phone Number. Validated by validation.js.
+       ====================================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Book your Nile Horizon Airlines flight — enter passenger details and confirm your reservation."
+    />
+    <title>Book a Flight — Nile Horizon Airlines</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!--Icon-->
+    <link rel="icon" type="img/jpeg" href="plane.png" />
+  </head>
+  <body>
+    <!-- ==================== NAVIGATION BAR ==================== -->
+    <nav class="navbar" id="mainNav">
+      <div class="navbar__logo">
+        <span class="navbar__logo-icon">✈️</span>
+        <span class="navbar__logo-text">Nile Horizon</span>
+      </div>
+
+      <ul class="navbar__links">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li>
+          <a href="destinations.html" class="navbar__link">Destinations</a>
+        </li>
+        <li>
+          <a href="book.html" class="navbar__link navbar__link--active">Book</a>
+        </li>
+        <li><a href="tickets.html" class="navbar__link">My Ticket</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+      </ul>
+
+      <button
+        class="theme-toggle"
+        id="themeToggleBtn"
+        aria-label="Toggle theme"
+      >
+        🌙
+      </button>
+    </nav>
+
+    <!-- ==================== BOOKING FORM ==================== -->
+    <section class="booking-section" id="bookingSection">
+      <div class="container">
+        <h1 class="section-title">Book Your Flight</h1>
+        <p class="section-subtitle">
+          Enter your passenger details below to confirm your reservation
+        </p>
+
+        <div class="booking-card">
+          <form class="booking-form" id="bookingForm">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="passengerName">Full Name</label>
+              <input
+                type="text"
+                id="passengerName"
+                name="passengerName"
+                placeholder="e.g. Ahmed Mohamed Ali"
+              />
+              <span class="error-message" id="passengerNameError"></span>
+            </div>
+
+            <!-- National ID / Passport -->
+            <div class="form-group">
+              <label for="passengerId">National ID / Passport</label>
+              <input
+                type="text"
+                id="passengerId"
+                name="passengerId"
+                placeholder="e.g. 29901011234567"
+              />
+              <span class="error-message" id="passengerIdError"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="passengerEmail">Email Address</label>
+              <input
+                type="email"
+                id="passengerEmail"
+                name="passengerEmail"
+                placeholder="e.g. ahmed@example.com"
+              />
+              <span class="error-message" id="passengerEmailError"></span>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label for="passengerPhone">Phone Number</label>
+              <input
+                type="tel"
+                id="passengerPhone"
+                name="passengerPhone"
+                placeholder="e.g. 01012345678"
+              />
+              <span class="error-message" id="passengerPhoneError"></span>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="btn btn--primary"
+              id="confirmBookingBtn"
+              style="width: 100%; margin-top: 0.5rem"
+            >
+              ✅ Confirm Booking
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <p>
+        &copy; 2026 <a href="index.html">Nile Horizon Airlines</a> — Faculty
+        Project. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="dummy-data.js"></script>
+    <script src="validation.js"></script>
+    <script src="theme-toggle.js"></script>
+  </body>
+</html>

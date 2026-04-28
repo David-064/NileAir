@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <!-- ======================================================
+       contact.html — Contact Nile Horizon Airlines
+       Contact form and company contact information.
+       ====================================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Get in touch with Nile Horizon Airlines — customer support, feedback, and inquiries."
+    />
+    <title>Contact Us — Nile Horizon Airlines</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!--Icon-->
+    <link rel="icon" type="img/jpeg" href="plane.png" />
+  </head>
+  <body>
+    <!-- ==================== NAVIGATION BAR ==================== -->
+    <nav class="navbar" id="mainNav">
+      <div class="navbar__logo">
+        <span class="navbar__logo-icon">✈️</span>
+        <span class="navbar__logo-text">Nile Horizon</span>
+      </div>
+      <ul class="navbar__links">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li>
+          <a href="destinations.html" class="navbar__link">Destinations</a>
+        </li>
+        <li><a href="book.html" class="navbar__link">Book</a></li>
+        <li><a href="tickets.html" class="navbar__link">My Ticket</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li>
+          <a href="contact.html" class="navbar__link navbar__link--active"
+            >Contact</a
+          >
+        </li>
+        <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+      </ul>
+      <button
+        class="theme-toggle"
+        id="themeToggleBtn"
+        aria-label="Toggle theme"
+      >
+        🌙
+      </button>
+    </nav>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="booking-section" id="contactSection">
+      <div class="container">
+        <h1 class="section-title">Contact Us</h1>
+        <p class="section-subtitle">
+          We'd love to hear from you — send us a message
+        </p>
+
+        <div class="contact-layout">
+          <!-- Contact Form -->
+          <div class="booking-card">
+            <form class="booking-form" id="contactForm">
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="contactName">Your Name</label>
+                <input
+                  type="text"
+                  id="contactName"
+                  name="contactName"
+                  placeholder="e.g. Fatma Hassan"
+                />
+                <span class="error-message" id="contactNameError"></span>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="contactEmail"
+                  placeholder="e.g. fatma@example.com"
+                />
+                <span class="error-message" id="contactEmailError"></span>
+              </div>
+
+              <!-- Subject -->
+              <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <select id="contactSubject" name="contactSubject">
+                  <option value="">— Select Subject —</option>
+                  <option value="general">General Inquiry</option>
+                  <option value="booking">Booking Help</option>
+                  <option value="complaint">Complaint</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="refund">Refund Request</option>
+                </select>
+                <span class="error-message" id="contactSubjectError"></span>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea
+                  id="contactMessage"
+                  name="contactMessage"
+                  rows="5"
+                  placeholder="Write your message here..."
+                  style="
+                    padding: 0.85rem 1rem;
+                    border: 2px solid var(--border-input);
+                    border-radius: 12px;
+                    background: var(--bg-input);
+                    color: var(--text-primary);
+                    font-family: &quot;Inter&quot;, sans-serif;
+                    font-size: 0.95rem;
+                    resize: vertical;
+                    outline: none;
+                    transition: border-color 0.3s ease;
+                  "
+                ></textarea>
+                <span class="error-message" id="contactMessageError"></span>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="btn btn--primary"
+                id="sendMessageBtn"
+                style="width: 100%"
+              >
+                📩 Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info Cards -->
+          <div class="contact-info">
+            <div class="contact-info-card">
+              <div class="contact-info-card__icon">📍</div>
+              <h3 class="contact-info-card__title">Head Office</h3>
+              <p class="contact-info-card__text">
+                12 Nile Corniche Road<br />
+                Garden City, Cairo 11511<br />
+                Egypt
+              </p>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-info-card__icon">📞</div>
+              <h3 class="contact-info-card__title">Phone</h3>
+              <p class="contact-info-card__text">
+                Hotline: +20 2 1234 5678<br />
+                Toll-free: 0800-NILE-AIR
+              </p>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-info-card__icon">📧</div>
+              <h3 class="contact-info-card__title">Email</h3>
+              <p class="contact-info-card__text">
+                support@nilehorizon.eg<br />
+                bookings@nilehorizon.eg
+              </p>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-info-card__icon">🕐</div>
+              <h3 class="contact-info-card__title">Working Hours</h3>
+              <p class="contact-info-card__text">
+                Sun – Thu: 8:00 AM – 8:00 PM<br />
+                Fri – Sat: 10:00 AM – 4:00 PM
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /.contact-layout -->
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <p>
+        &copy; 2026 <a href="index.html">Nile Horizon Airlines</a> — Faculty
+        Project. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="dummy-data.js"></script>
+    <script src="validation.js"></script>
+    <script src="theme-toggle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <!-- ======================================================
+       tickets.html — Ticket Dashboard / Confirmation
+       Displays a static dummy booked ticket showing
+       passenger info, flight details, and a boarding-pass
+       style layout.
+       ====================================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Your Nile Horizon Airlines e-ticket — view your flight details and boarding information."
+    />
+    <title>My Ticket — Nile Horizon Airlines</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!--Icon-->
+    <link rel="icon" type="img/jpeg" href="plane.png" />
+  </head>
+  <body>
+    <!-- ==================== NAVIGATION BAR ==================== -->
+    <nav class="navbar" id="mainNav">
+      <div class="navbar__logo">
+        <span class="navbar__logo-icon">✈️</span>
+        <span class="navbar__logo-text">Nile Horizon</span>
+      </div>
+
+      <ul class="navbar__links">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li>
+          <a href="destinations.html" class="navbar__link">Destinations</a>
+        </li>
+        <li><a href="book.html" class="navbar__link">Book</a></li>
+        <li>
+          <a href="tickets.html" class="navbar__link navbar__link--active"
+            >My Ticket</a
+          >
+        </li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+      </ul>
+
+      <button
+        class="theme-toggle"
+        id="themeToggleBtn"
+        aria-label="Toggle theme"
+      >
+        🌙
+      </button>
+    </nav>
+
+    <!-- ==================== TICKET / BOARDING PASS ==================== -->
+    <section class="tickets-section" id="ticketsSection">
+      <div class="container">
+        <h1 class="section-title">Your E-Ticket</h1>
+        <p class="section-subtitle">
+          Booking confirmed — here are your flight details
+        </p>
+
+        <div class="ticket" id="ticketCard">
+          <!-- Ticket Header -->
+          <div class="ticket__header">
+            <span class="ticket__header-logo">✈️ Nile Horizon Airlines</span>
+            <span class="ticket__header-status">Confirmed</span>
+          </div>
+
+          <!-- Ticket Body -->
+          <div class="ticket__body">
+            <!-- Route display -->
+            <div class="ticket__route">
+              <div class="ticket__city">
+                <p class="ticket__city-code">CAI</p>
+                <p class="ticket__city-name">Cairo</p>
+              </div>
+              <span class="ticket__arrow">✈ ──────</span>
+              <div class="ticket__city">
+                <p class="ticket__city-code">LXR</p>
+                <p class="ticket__city-name">Luxor</p>
+              </div>
+            </div>
+
+            <!-- Detail grid -->
+            <div class="ticket__details">
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Passenger</p>
+                <p class="ticket__detail-value">Ahmed Mohamed Ali</p>
+              </div>
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Flight</p>
+                <p class="ticket__detail-value">NH-101</p>
+              </div>
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Date</p>
+                <p class="ticket__detail-value">10 May 2026</p>
+              </div>
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Departure</p>
+                <p class="ticket__detail-value">08:00 AM</p>
+              </div>
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Arrival</p>
+                <p class="ticket__detail-value">09:15 AM</p>
+              </div>
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Seat</p>
+                <p class="ticket__detail-value">12A — Window</p>
+              </div>
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Gate</p>
+                <p class="ticket__detail-value">B7</p>
+              </div>
+              <div class="ticket__detail">
+                <p class="ticket__detail-label">Class</p>
+                <p class="ticket__detail-value">Economy</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ticket Footer -->
+          <div class="ticket__footer">
+            <span class="ticket__barcode">||||| |||| ||||| || |||| |||||</span>
+            <button
+              class="btn btn--outline ticket__print-btn"
+              onclick="window.print()"
+            >
+              🖨️ Print Ticket
+            </button>
+          </div>
+        </div>
+        <!-- /.ticket -->
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <p>
+        &copy; 2026 <a href="index.html">Nile Horizon Airlines</a> — Faculty
+        Project. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="dummy-data.js"></script>
+    <script src="validation.js"></script>
+    <script src="theme-toggle.js"></script>
+  </body>
+</html>

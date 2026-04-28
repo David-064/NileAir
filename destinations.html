@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <!-- ======================================================
+       destinations.html — Egyptian Routes & Destinations
+       Showcases all available flight routes with details.
+       ====================================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore all Nile Horizon Airlines destinations — Cairo, Luxor, Aswan, Hurghada, Sharm El-Sheikh and more."
+    />
+    <title>Destinations — Nile Horizon Airlines</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!--Icon-->
+    <link rel="icon" type="img/jpeg" href="plane.png" />
+  </head>
+  <body>
+    <!-- ==================== NAVIGATION BAR ==================== -->
+    <nav class="navbar" id="mainNav">
+      <div class="navbar__logo">
+        <span class="navbar__logo-icon">✈️</span>
+        <span class="navbar__logo-text">Nile Horizon</span>
+      </div>
+      <ul class="navbar__links">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li>
+          <a href="destinations.html" class="navbar__link navbar__link--active"
+            >Destinations</a
+          >
+        </li>
+        <li><a href="book.html" class="navbar__link">Book</a></li>
+        <li><a href="tickets.html" class="navbar__link">My Ticket</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+      </ul>
+      <button
+        class="theme-toggle"
+        id="themeToggleBtn"
+        aria-label="Toggle theme"
+      >
+        🌙
+      </button>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="destHero">
+      <div class="hero__content">
+        <span class="hero__tagline">Where Will You Go?</span>
+        <h1 class="hero__title">Explore <span>Egypt's Finest</span></h1>
+        <p class="hero__description">
+          From ancient temples to turquoise coastlines — discover every
+          destination we fly to across the land of the pharaohs.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== DESTINATIONS GRID ==================== -->
+    <section class="destinations-section" id="allDestinations">
+      <div class="container">
+        <h2 class="section-title">All Destinations</h2>
+        <p class="section-subtitle">Choose your next Egyptian adventure</p>
+
+        <div class="destinations-grid">
+          <!-- Cairo -->
+          <div class="destination-card destination-card--large">
+            <div class="destination-card__icon">🏛️</div>
+            <h3 class="destination-card__route">Cairo (CAI)</h3>
+            <p class="destination-card__duration">
+              The capital — Gateway to the Pyramids of Giza, the Sphinx, and the
+              Egyptian Museum.
+            </p>
+            <a
+              href="book.html"
+              class="btn btn--outline"
+              style="margin-top: 1rem; font-size: 0.8rem"
+              >Book to Cairo</a
+            >
+          </div>
+
+          <!-- Luxor -->
+          <div class="destination-card destination-card--large">
+            <div class="destination-card__icon">🏺</div>
+            <h3 class="destination-card__route">Luxor (LXR)</h3>
+            <p class="destination-card__duration">
+              Valley of the Kings, Karnak Temple, and the world's greatest
+              open-air museum.
+            </p>
+            <a
+              href="book.html"
+              class="btn btn--outline"
+              style="margin-top: 1rem; font-size: 0.8rem"
+              >Book to Luxor</a
+            >
+          </div>
+
+          <!-- Aswan -->
+          <div class="destination-card destination-card--large">
+            <div class="destination-card__icon">⛵</div>
+            <h3 class="destination-card__route">Aswan (ASW)</h3>
+            <p class="destination-card__duration">
+              The Nubian city — Philae Temple, felucca rides on the Nile, and
+              the High Dam.
+            </p>
+            <a
+              href="book.html"
+              class="btn btn--outline"
+              style="margin-top: 1rem; font-size: 0.8rem"
+              >Book to Aswan</a
+            >
+          </div>
+
+          <!-- Hurghada -->
+          <div class="destination-card destination-card--large">
+            <div class="destination-card__icon">🤿</div>
+            <h3 class="destination-card__route">Hurghada (HRG)</h3>
+            <p class="destination-card__duration">
+              Red Sea paradise — world-class diving, snorkeling, and golden
+              sandy beaches.
+            </p>
+            <a
+              href="book.html"
+              class="btn btn--outline"
+              style="margin-top: 1rem; font-size: 0.8rem"
+              >Book to Hurghada</a
+            >
+          </div>
+
+          <!-- Sharm El-Sheikh -->
+          <div class="destination-card destination-card--large">
+            <div class="destination-card__icon">🏖️</div>
+            <h3 class="destination-card__route">Sharm El-Sheikh (SSH)</h3>
+            <p class="destination-card__duration">
+              The jewel of Sinai — Ras Mohammed, Naama Bay, and vibrant coral
+              reefs.
+            </p>
+            <a
+              href="book.html"
+              class="btn btn--outline"
+              style="margin-top: 1rem; font-size: 0.8rem"
+              >Book to Sharm</a
+            >
+          </div>
+
+          <!-- Alexandria -->
+          <div class="destination-card destination-card--large">
+            <div class="destination-card__icon">🌊</div>
+            <h3 class="destination-card__route">Alexandria (ALY)</h3>
+            <p class="destination-card__duration">
+              The Mediterranean bride — Bibliotheca Alexandrina, Citadel of
+              Qaitbay, and the Corniche.
+            </p>
+            <a
+              href="book.html"
+              class="btn btn--outline"
+              style="margin-top: 1rem; font-size: 0.8rem"
+              >Book to Alexandria</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE TABLE ==================== -->
+    <section class="routes-section" id="routeTable">
+      <div class="container">
+        <h2 class="section-title">Flight Schedule</h2>
+        <p class="section-subtitle">Daily and weekly flights across Egypt</p>
+
+        <div class="table-wrapper">
+          <table class="routes-table" id="routesTable">
+            <thead>
+              <tr>
+                <th>Flight</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Price (EGP)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>NH-101</td>
+                <td>Cairo</td>
+                <td>Luxor</td>
+                <td>08:00</td>
+                <td>09:15</td>
+                <td>1,850</td>
+              </tr>
+              <tr>
+                <td>NH-202</td>
+                <td>Cairo</td>
+                <td>Sharm El-Sheikh</td>
+                <td>10:30</td>
+                <td>11:45</td>
+                <td>2,200</td>
+              </tr>
+              <tr>
+                <td>NH-303</td>
+                <td>Alexandria</td>
+                <td>Aswan</td>
+                <td>06:00</td>
+                <td>08:00</td>
+                <td>2,500</td>
+              </tr>
+              <tr>
+                <td>NH-404</td>
+                <td>Cairo</td>
+                <td>Hurghada</td>
+                <td>14:00</td>
+                <td>15:10</td>
+                <td>1,950</td>
+              </tr>
+              <tr>
+                <td>NH-505</td>
+                <td>Alexandria</td>
+                <td>Sharm El-Sheikh</td>
+                <td>12:00</td>
+                <td>13:30</td>
+                <td>2,350</td>
+              </tr>
+              <tr>
+                <td>NH-606</td>
+                <td>Luxor</td>
+                <td>Cairo</td>
+                <td>16:45</td>
+                <td>18:00</td>
+                <td>1,850</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <p>
+        &copy; 2026 <a href="index.html">Nile Horizon Airlines</a> — Faculty
+        Project. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="dummy-data.js"></script>
+    <script src="validation.js"></script>
+    <script src="theme-toggle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <!-- ======================================================
+       faq.html — Frequently Asked Questions
+       Accordion-style FAQ for common passenger questions.
+       ====================================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Find answers to common questions about Nile Horizon Airlines — baggage, check-in, refunds, and more."
+    />
+    <title>FAQ — Nile Horizon Airlines</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!--Icon-->
+    <link rel="icon" type="img/jpeg" href="plane.png" />
+  </head>
+  <body>
+    <!-- ==================== NAVIGATION BAR ==================== -->
+    <nav class="navbar" id="mainNav">
+      <div class="navbar__logo">
+        <span class="navbar__logo-icon">✈️</span>
+        <span class="navbar__logo-text">Nile Horizon</span>
+      </div>
+      <ul class="navbar__links">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li>
+          <a href="destinations.html" class="navbar__link">Destinations</a>
+        </li>
+        <li><a href="book.html" class="navbar__link">Book</a></li>
+        <li><a href="tickets.html" class="navbar__link">My Ticket</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li>
+          <a href="faq.html" class="navbar__link navbar__link--active">FAQ</a>
+        </li>
+      </ul>
+      <button
+        class="theme-toggle"
+        id="themeToggleBtn"
+        aria-label="Toggle theme"
+      >
+        🌙
+      </button>
+    </nav>
+
+    <!-- ==================== FAQ SECTION ==================== -->
+    <section class="faq-section" id="faqSection">
+      <div class="container">
+        <h1 class="section-title">Frequently Asked Questions</h1>
+        <p class="section-subtitle">
+          Quick answers to the most common passenger questions
+        </p>
+
+        <div class="faq-list" id="faqList">
+          <!-- Q1 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>How do I book a flight with Nile Horizon Airlines?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                You can book a flight by visiting our
+                <a href="book.html">Book page</a>, entering your passenger
+                details, and confirming your reservation. You can also call our
+                hotline at +20 2 1234 5678.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>What is the baggage allowance?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Economy class passengers are allowed one carry-on bag (7 kg) and
+                one checked bag (23 kg). Business class passengers receive 2
+                checked bags (23 kg each). Extra baggage fees start at 150 EGP
+                per kilogram.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>Can I cancel or change my flight?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. Free cancellation is available up to 48 hours before
+                departure. Changes can be made up to 24 hours before the flight
+                for a 200 EGP fee. Contact our support team or visit the
+                <a href="contact.html">Contact page</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>How early should I arrive at the airport?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We recommend arriving at least 2 hours before your domestic
+                flight departure time. Check-in counters close 45 minutes before
+                departure. Online check-in opens 24 hours before your flight.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>Do you offer refunds?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Refundable tickets can be fully refunded up to 48 hours before
+                departure. Non-refundable tickets may receive flight credit for
+                future bookings. Please submit a refund request via the
+                <a href="contact.html">Contact page</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>Is there Wi-Fi on board?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Complimentary Wi-Fi is available on our Airbus A320neo fleet.
+                Boeing 737 MAX 8 aircraft offer Wi-Fi for a small fee of 50 EGP
+                per session. The Embraer E190 regional jets do not currently
+                offer Wi-Fi.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>What documents do I need to fly domestically?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Egyptian citizens need a valid National ID card. Foreign
+                nationals must carry their passport. All passengers must present
+                the same identification used during booking at check-in.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q8 -->
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>Do you offer student discounts?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes! Students with a valid university ID receive 20% off all
+                domestic routes year-round. Check our
+                <a href="offers.html">Offers page</a> for the latest student and
+                seasonal deals.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /.faq-list -->
+      </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <section class="cta-section" id="ctaSection">
+      <div class="container" style="text-align: center; padding: 3rem 0">
+        <h2 class="section-title">Still Have Questions?</h2>
+        <p class="section-subtitle">Our support team is ready to help you</p>
+        <a href="contact.html" class="btn btn--primary">Contact Support</a>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <p>
+        &copy; 2026 <a href="index.html">Nile Horizon Airlines</a> — Faculty
+        Project. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="dummy-data.js"></script>
+    <script src="validation.js"></script>
+    <script src="theme-toggle.js"></script>
+
+    <!-- Inline FAQ toggle (simple vanilla JS) -->
+    <script>
+      /**
+       * toggleFaq
+       * Opens/closes an FAQ accordion item.
+       * @param {HTMLElement} btn — the clicked question button
+       */
+      function toggleFaq(btn) {
+        var item = btn.parentElement;
+        var isOpen = item.classList.contains("faq-item--open");
+
+        // Close all items first
+        document.querySelectorAll(".faq-item").forEach(function (el) {
+          el.classList.remove("faq-item--open");
+          el.querySelector(".faq-icon").textContent = "+";
+        });
+
+        // If it wasn't open, open it
+        if (!isOpen) {
+          item.classList.add("faq-item--open");
+          btn.querySelector(".faq-icon").textContent = "−";
+        }
+      }
+    </script>
+  </body>
+</html>
